@@ -28,9 +28,11 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./",\
         "packageDependencies": [\
           ["@emotion/babel-plugin", "npm:11.13.5"],\
+          ["@emotion/css", "npm:11.13.5"],\
           ["@emotion/react", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:11.13.5"],\
           ["@emotion/styled", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:11.13.5"],\
           ["@eslint/js", "npm:9.16.0"],\
+          ["@types/node", "npm:22.10.1"],\
           ["@types/react", "npm:18.3.12"],\
           ["@types/react-dom", "npm:18.3.1"],\
           ["@vitejs/plugin-react", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:4.3.4"],\
@@ -2693,6 +2695,20 @@ const RAW_RUNTIME_STATE =
           ["@emotion/utils", "npm:1.4.2"],\
           ["@emotion/weak-memoize", "npm:0.4.0"],\
           ["stylis", "npm:4.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@emotion/css", [\
+      ["npm:11.13.5", {\
+        "packageLocation": "../../../../.yarn/berry/cache/@emotion-css-npm-11.13.5-a50e7e4239-10c0.zip/node_modules/@emotion/css/",\
+        "packageDependencies": [\
+          ["@emotion/css", "npm:11.13.5"],\
+          ["@emotion/babel-plugin", "npm:11.13.5"],\
+          ["@emotion/cache", "npm:11.13.5"],\
+          ["@emotion/serialize", "npm:1.3.3"],\
+          ["@emotion/sheet", "npm:1.4.0"],\
+          ["@emotion/utils", "npm:1.4.2"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -5741,9 +5757,11 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["booking", "workspace:."],\
           ["@emotion/babel-plugin", "npm:11.13.5"],\
+          ["@emotion/css", "npm:11.13.5"],\
           ["@emotion/react", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:11.13.5"],\
           ["@emotion/styled", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:11.13.5"],\
           ["@eslint/js", "npm:9.16.0"],\
+          ["@types/node", "npm:22.10.1"],\
           ["@types/react", "npm:18.3.12"],\
           ["@types/react-dom", "npm:18.3.1"],\
           ["@vitejs/plugin-react", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:4.3.4"],\
@@ -9835,7 +9853,7 @@ const RAW_RUNTIME_STATE =
           ["@types/jiti", null],\
           ["@types/less", null],\
           ["@types/lightningcss", null],\
-          ["@types/node", null],\
+          ["@types/node", "npm:22.10.1"],\
           ["@types/sass", null],\
           ["@types/sass-embedded", null],\
           ["@types/stylus", null],\

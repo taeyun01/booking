@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,6 +13,9 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    alias: [{ find: '@', replacement: '/src' }], // '@'를 '/src' 폴더로 대체
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@features': path.resolve(__dirname, 'src/features'),
+    },
   },
 })
