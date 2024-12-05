@@ -1,24 +1,16 @@
-/* @jsxImportSource @emotion/react */
-import styled from '@emotion/styled'
-import { css } from '@emotion/react'
-
-const Container = styled.div`
-  color: red;
-`
+import HotelList from '@pages/HotelList'
+import Test from '@pages/Test'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
     <>
-      <Container>
-        <h1>프로젝트 셋팅</h1>
-      </Container>
-      <h2
-        css={css`
-          color: pink;
-        `}
-      >
-        프로젝트 셋팅2
-      </h2>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HotelList />} />
+          <Route path="/test" element={<Test />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }

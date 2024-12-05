@@ -14,8 +14,14 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
+      '@': path.resolve(__dirname, 'src'),
       '@components': path.resolve(__dirname, 'src/components'),
       '@features': path.resolve(__dirname, 'src/features'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@mock': path.resolve(__dirname, 'src/mock'),
+      '@remote': path.resolve(__dirname, 'src/remote'),
+      '@constants': path.resolve(__dirname, 'src/constants/index'),
+      '@constants/*': path.resolve(__dirname, 'src/constants/*'),
     },
   },
 })
