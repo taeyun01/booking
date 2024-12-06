@@ -22,6 +22,8 @@ export default defineConfig({
       '@remote': path.resolve(__dirname, 'src/remote'),
       '@constants': path.resolve(__dirname, 'src/constants/index'),
       '@constants/*': path.resolve(__dirname, 'src/constants/*'),
+      '@models': path.resolve(__dirname, 'src/models/*'),
+      '@utils': path.resolve(__dirname, 'src/utils/*'),
     },
   },
 })

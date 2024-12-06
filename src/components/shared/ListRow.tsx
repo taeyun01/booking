@@ -1,5 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
+import { css, SerializedStyles } from '@emotion/react'
 import Flex from './Flex'
 import Text from './Text'
 import Skeleton from './Skeleton'
@@ -12,23 +11,17 @@ interface ListRowProps {
   withArrow?: boolean // 화살표 표시 여부 (true면 화살표 표시)
   onClick?: () => void
   as?: 'div' | 'li'
+  style?: SerializedStyles // 커스텀 스타일 array로 넘겨주면 스타일을 확장해서 사용가능
 }
 
 //* 컴포넌트 합성하기 : 방대한 양의 props를 사용하지 않아도 되고 재사용성에도 좋음 (props 드릴링 해결)
-const ListRow = ({
-  as = 'li',
-  left,
-  contents,
-  right,
-  withArrow,
-  onClick,
-}: ListRowProps) => {
+const ListRow = ({ as = 'li', left, contents, right, withArrow, onClick, style }: ListRowProps) => {
   return (
     //* ListRow는 UI를 넣을 구멍만 뚫어주고 사용처에서 각각 요소들을 조합해서 사용하는 방법
-    <Flex as={as} css={listRowContainerStyles} onClick={onClick} align="center">
-      <Flex css={listRowLeftStyles}>{left}</Flex>
+    <Flex as={as} css={[listRowContainerStyles, style]} onClick={onClick} align="center">
+      {left && <Flex css={listRowLeftStyles}>{left}</Flex>} {/* left를 넣었을때만 그려주기 */}
       <Flex css={listRowContentsStyles}>{contents}</Flex>
-      <Flex>{right}</Flex>
+      {right && <Flex>{right}</Flex>}
       {withArrow && <ArrowRightIcon />}
     </Flex>
   )
@@ -84,12 +77,7 @@ const SkeletonListRow = () => {
 
 const ArrowRightIcon = () => {
   return (
-    <svg
-      viewBox="0 0 96 96"
-      xmlns="http://www.w3.org/2000/svg"
-      width={20}
-      height={20}
-    >
+    <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" width={20} height={20}>
       <title />
       <path d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
     </svg>
