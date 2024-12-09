@@ -31,7 +31,7 @@ const useHotels = () => {
   // 페이지 데이터를 펼쳐서 하나의 배열로 만들어줌
   const hotels = data?.pages.flatMap((page) => page.items)
 
-  console.log(hotels)
+  // console.log(hotels)
 
   return { data: hotels, loadMore, isFetchingNextPage, hasNextPage }
 }
