@@ -1,4 +1,13 @@
-import { QuerySnapshot, collection, limit, query, startAfter, getDocs } from 'firebase/firestore'
+import {
+  QuerySnapshot,
+  collection,
+  limit,
+  query,
+  startAfter,
+  getDocs,
+  doc,
+  getDoc,
+} from 'firebase/firestore'
 
 import { COLLECTIONS } from '@/constants'
 
@@ -11,7 +20,11 @@ export const getHotels = async (pageParams?: QuerySnapshot<Hotel>) => {
   // pageParams가 없다면 최초의 호출인거고, 있다면 다음 페이지에 대한 요청이기 때문에 처음 호출에는 바로 데이터를 불러온다.
   const hotelsQuery = !pageParams
     ? query(collection(store, COLLECTIONS.HOTEL), limit(10))
-    : query(collection(store, COLLECTIONS.HOTEL), startAfter(pageParams), limit(10)) //pageParams를 기준을 몇개를 가져올건지 10개
+    : query(
+        collection(store, COLLECTIONS.HOTEL),
+        startAfter(pageParams),
+        limit(10),
+      ) //pageParams를 기준을 몇개를 가져올건지 10개
 
   // console.log('hotelsQuery', hotelsQuery)
 
@@ -40,4 +53,13 @@ export const getHotels = async (pageParams?: QuerySnapshot<Hotel>) => {
     items,
     lastVisible,
   }
+}
+
+export const getHotel = async (id: string) => {
+  const snapshot = await getDoc(doc(store, COLLECTIONS.HOTEL, id))
+
+  return {
+    id,
+    ...snapshot.data(),
+  } as Hotel // 이렇게 뽑아진 data의 타입은 Hotel이다.
 }

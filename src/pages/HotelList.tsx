@@ -1,6 +1,6 @@
 import { css } from '@emotion/react'
 
-import Hotel from '@/components/hotelList/Hotel'
+import HotelItem from '@/components/hotelList/HotelItem'
 import Spacing from '@/components/shared/Spacing'
 import Top from '@/components/shared/Top'
 import useHotels from '@components/hotelList/hooks/useHotels'
@@ -26,7 +26,7 @@ const HotelList = () => {
         <ul>
           {hotels.map((hotel, idx) => (
             <Fragment key={hotel.id}>
-              <Hotel hotel={hotel} />
+              <HotelItem hotel={hotel} />
               {idx !== hotels.length - 1 && (
                 // 마지막 요소는 여백 제거
                 <Spacing

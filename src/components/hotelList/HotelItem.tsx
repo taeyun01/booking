@@ -3,7 +3,7 @@ import ListRow from '@/components/shared/ListRow'
 import Spacing from '@/components/shared/Spacing'
 import Tag from '@/components/shared/Tag'
 import Text from '@/components/shared/Text'
-import { Hotel as IHotel } from '@/models/hotel'
+import { Hotel } from '@/models/hotel'
 import addDelimiter from '@/utils/addDelimiter'
 
 import { css } from '@emotion/react'
@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 // 호텔 정보를 표시하는 컴포넌트
-const Hotel = ({ hotel }: { hotel: IHotel }) => {
+const HotelItem = ({ hotel }: { hotel: Hotel }) => {
   // 남은 시간을 저장하는 상태
   const [remainedTime, setRemainedTime] = useState(0)
 
@@ -120,4 +120,4 @@ const imageStyles = css`
   object-fit: cover;
   margin-left: 16px;
 `
-export default Hotel
+export default HotelItem
