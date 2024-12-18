@@ -1,4 +1,5 @@
 import RecommendHotels from '@/components/hotel/\bRecommendHotels'
+import ActionButton from '@/components/hotel/ActionButton'
 import Carousel from '@/components/hotel/Carousel'
 import Contents from '@/components/hotel/Contents'
 import useHotel from '@/components/hotel/hooks/useHotel'
@@ -25,6 +26,7 @@ const HotelPage = () => {
     <div>
       <Top title={name} subtitle={comment} />
       <Carousel images={images} />
+      <ActionButton hotel={data} />
       <Rooms hotelId={id} />
       <Contents contents={contents} />
       <Map location={location} />
