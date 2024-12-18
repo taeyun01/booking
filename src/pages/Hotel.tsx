@@ -1,3 +1,4 @@
+import RecommendHotels from '@/components/hotel/\bRecommendHotels'
 import Carousel from '@/components/hotel/Carousel'
 import Contents from '@/components/hotel/Contents'
 import useHotel from '@/components/hotel/hooks/useHotel'
@@ -18,7 +19,7 @@ const HotelPage = () => {
     return <div>로딩중....</div>
   }
 
-  const { name, comment, images, contents, location } = data
+  const { name, comment, images, contents, location, recommendHotels } = data
 
   return (
     <div>
@@ -27,6 +28,7 @@ const HotelPage = () => {
       <Rooms hotelId={id} />
       <Contents contents={contents} />
       <Map location={location} />
+      <RecommendHotels recommendHotels={recommendHotels} />
     </div>
   )
 }
