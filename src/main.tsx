@@ -6,6 +6,7 @@ import { Global } from '@emotion/react'
 import globalStyles from './styles/globalStyles.ts'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { RecoilRoot } from 'recoil'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,8 +19,10 @@ const queryClient = new QueryClient({
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Global styles={globalStyles} />
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </RecoilRoot>
   </StrictMode>,
 )

@@ -5,15 +5,14 @@ import Button from './Button'
 import { css } from '@emotion/react'
 import { colors } from '../../styles/colorPalette'
 import { useCallback } from 'react'
-// import useUser from '../../hooks/auth/useUser'
-// import MyImage from '../my/MyImage'
+import useUser from '@/hooks/auth/useUser'
 
 const Navbar = () => {
   const location = useLocation()
   const showSigninButton = ['/signin', '/signup'].includes(location.pathname)
 
-  // TODO: 추후 작업
-  const user = null
+  // 유저 정보 가져오기
+  const user = useUser()
 
   // 유저 상태에 따라 버튼을 다르게 렌더링 해주는 함수
   const renderButton = useCallback(() => {
@@ -21,8 +20,16 @@ const Navbar = () => {
     if (user) {
       return (
         <Link to="/my">
-          // TODO: 추후 작업
-          <img src="" alt="" />
+          <img
+            src={
+              user.photoURL ??
+              'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-128.png'
+            }
+            alt="유저의 이미지"
+            width={40}
+            height={40}
+            style={{ borderRadius: '100%' }}
+          />
         </Link>
       )
     }
@@ -41,7 +48,7 @@ const Navbar = () => {
 
   return (
     <Flex justify="space-between" align="center" css={navbarContainerStyles}>
-      <Link to="/">Home</Link>
+      <Link to="/">Booking</Link>
       {renderButton()}
     </Flex>
   )

@@ -1,6 +1,6 @@
 import { signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth'
 import { useCallback } from 'react'
-import { collection, doc, setDoc } from 'firebase/firestore'
+import { collection, doc, setDoc, getDoc } from 'firebase/firestore'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -18,6 +18,14 @@ const useGoogleSignin = () => {
     try {
       const { user } = await signInWithPopup(auth, provider)
 
+      const userSnapshot = await getDoc(
+        doc(collection(store, COLLECTIONS.USER), user.uid),
+      )
+
+      // 이미 가입한 유저면 메인 페이지 이동
+      if (userSnapshot.exists()) return navigate('/')
+
+      // 새로운 유저
       const newUser = {
         uid: user.uid,
         email: user.email,
