@@ -8,6 +8,8 @@ import globalStyles from './styles/globalStyles.ts'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { RecoilRoot } from 'recoil'
 
+import { AlertContextProvider } from '@/contexts/AlertContext'
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -21,7 +23,9 @@ createRoot(document.getElementById('root')!).render(
     <Global styles={globalStyles} />
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <AlertContextProvider>
+          <App />
+        </AlertContextProvider>
       </QueryClientProvider>
     </RecoilRoot>
   </StrictMode>,

@@ -1,4 +1,4 @@
-import { colors } from '@styles/colorPalette'
+import { colors } from '@/styles/colorPalette'
 import styled from '@emotion/styled'
 
 import Text from './Text'
@@ -14,7 +14,13 @@ interface AlertProps {
   onButtonClick: () => void
 }
 
-function Alert({ open, title, description, buttonLabel = '확인', onButtonClick }: AlertProps) {
+function Alert({
+  open,
+  title,
+  description,
+  buttonLabel = '확인',
+  onButtonClick,
+}: AlertProps) {
   if (!open) {
     return null
   }
@@ -22,12 +28,21 @@ function Alert({ open, title, description, buttonLabel = '확인', onButtonClick
   return (
     <Dimmed>
       <AlertContainer>
-        <Text typography="t4" bold={true} display="block" style={{ marginBottom: 6 }}>
+        <Text
+          typography="t4"
+          bold={true}
+          display="block"
+          style={{ marginBottom: 6 }}
+        >
           {title}
         </Text>
         {description ? <Text typography="t7">{description}</Text> : null}
         <Flex justify="flex-end">
-          <Button onClick={onButtonClick} weak={true} style={{ marginTop: 12, border: 'none' }}>
+          <Button
+            onClick={onButtonClick}
+            weak={true}
+            style={{ marginTop: 12, border: 'none' }}
+          >
             {buttonLabel}
           </Button>
         </Flex>

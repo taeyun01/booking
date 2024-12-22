@@ -7,18 +7,41 @@ import Text from '@/components/shared/Text'
 import { Hotel } from '@/models/hotel'
 
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import useLike from '@/hooks/like/useLike'
 
 const ActionButton = ({ hotel }: { hotel: Hotel }) => {
   const share = useShare()
-  const { name, comment, mainImageUrl } = hotel
+  const { data: likes, mutate: likeMutate } = useLike()
+
+  const { name, comment, mainImageUrl, id } = hotel
+
+  // isLike: 찜이 됐는지 안됐는지 확인
+  // data: likes -> 얘는 리스트 전체를 다 가져오는건데 호텔 상세페이지에서는 호텔에 대한 데이터만 뽑아오는게 맞지 않을까??
+  // 상황에 따라 다를것 같음 지금은 찜하기 목록도 몇개 없고, 상품목록도 몇개 없어서 이렇게 간단하게 처리해볼 수 있지만
+  // 만약에 리스트가 너무 커지면 단일만 뽑아오는 방법을 생각해볼 수 있겠음
+
+  // 지금 리스트를 전부 가져오는 이유는 캐시된 데이터의 싱크를 맞추고 캐싱된 데이터를 활용하기 위해서 이렇게 처리함.
+  const isLike = Boolean(likes?.find((like) => like.hotelId === hotel.id))
 
   return (
     <Flex css={containerStyle}>
       <Button
         label="찜하기"
-        iconUrl="https://cdn4.iconfinder.com/data/icons/twitter-29/512/166_Heart_Love_Like_Twitter-512.png"
+        iconUrl={
+          isLike
+            ? 'https://cdn4.iconfinder.com/data/icons/twitter-29/512/166_Heart_Love_Like_Twitter-64.png'
+            : 'https://cdn3.iconfinder.com/data/icons/feather-5/24/heart-64.png'
+        }
         // TODO: 찜하기 기능 추가하기
-        onClick={() => {}}
+        onClick={() => {
+          likeMutate({
+            hotel: {
+              name,
+              mainImageUrl,
+              id,
+            },
+          })
+        }}
       />
       <Button
         label="공유하기"

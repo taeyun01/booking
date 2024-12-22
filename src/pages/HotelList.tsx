@@ -8,8 +8,13 @@ import useHotels from '@components/hotelList/hooks/useHotels'
 import { Fragment } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
+import useLike from '@/hooks/like/useLike'
+
 const HotelList = () => {
   const { data: hotels, hasNextPage, loadMore } = useHotels()
+  const { data: likes, mutate: likeMutate } = useLike()
+
+  console.log(likes)
 
   if (!hotels) return <div>호텔 정보를 불러오는중...</div>
   return (
@@ -26,7 +31,13 @@ const HotelList = () => {
         <ul>
           {hotels.map((hotel, idx) => (
             <Fragment key={hotel.id}>
-              <HotelItem hotel={hotel} />
+              <HotelItem
+                hotel={hotel}
+                isLike={Boolean(
+                  likes?.find((like) => like.hotelId === hotel.id),
+                )} // 찜한 목록에 있는지 확인
+                onLike={likeMutate}
+              />
               {idx !== hotels.length - 1 && (
                 // 마지막 요소는 여백 제거
                 <Spacing

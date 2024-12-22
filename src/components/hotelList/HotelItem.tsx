@@ -9,12 +9,24 @@ import addDelimiter from '@/utils/addDelimiter'
 import { css } from '@emotion/react'
 import { differenceInMilliseconds, parseISO } from 'date-fns'
 import formatTime from '@/utils/fromatTime'
-import { useEffect, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom'
 
 // 호텔 정보를 표시하는 컴포넌트
-const HotelItem = ({ hotel }: { hotel: Hotel }) => {
+const HotelItem = ({
+  hotel,
+  isLike,
+  onLike,
+}: {
+  hotel: Hotel
+  isLike: boolean
+  onLike: ({
+    hotel,
+  }: {
+    hotel: Pick<Hotel, 'name' | 'id' | 'mainImageUrl'>
+  }) => void
+}) => {
   // 남은 시간을 저장하는 상태
   const [remainedTime, setRemainedTime] = useState(0)
 
@@ -44,6 +56,20 @@ const HotelItem = ({ hotel }: { hotel: Hotel }) => {
         <Spacing size={8} />
       </div>
     )
+  }
+
+  // 찜하기 버튼을 누르면 현재 감싸져있는 a태그 때문에 페이지가 이동하는 이슈가 있음
+  // 찜하기 버튼만 누를때는 페이지가 이동하지 않도록 처리
+  const handleLike = (e: MouseEvent<HTMLImageElement>) => {
+    e.preventDefault() // 페이지 이동을 죽여놓기
+
+    onLike({
+      hotel: {
+        name: hotel.name,
+        mainImageUrl: hotel.mainImageUrl,
+        id: hotel.id,
+      },
+    })
   }
 
   useEffect(() => {
@@ -91,7 +117,21 @@ const HotelItem = ({ hotel }: { hotel: Hotel }) => {
             </Flex>
           }
           right={
-            <Flex direction="column" align="flex-end">
+            <Flex
+              direction="column"
+              align="flex-end"
+              style={{ position: 'relative' }}
+            >
+              <img
+                css={iconHeartStyles}
+                src={
+                  isLike
+                    ? 'https://cdn4.iconfinder.com/data/icons/twitter-29/512/166_Heart_Love_Like_Twitter-64.png'
+                    : 'https://cdn3.iconfinder.com/data/icons/feather-5/24/heart-64.png'
+                }
+                alt="찜 이미지"
+                onClick={handleLike}
+              />
               <img
                 src={hotel.mainImageUrl}
                 alt={hotel.name}
@@ -120,4 +160,13 @@ const imageStyles = css`
   object-fit: cover;
   margin-left: 16px;
 `
+
+const iconHeartStyles = css`
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 30px;
+  height: 30px;
+`
+
 export default HotelItem
