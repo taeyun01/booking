@@ -19,18 +19,28 @@ const Navbar = () => {
     // 로그인 상태일 경우 (user가 null이 아닐 경우, user정보가 있을 경우)
     if (user) {
       return (
-        <Link to="/my">
-          <img
-            src={
-              user.photoURL ??
-              'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-128.png'
-            }
-            alt="유저의 이미지"
-            width={40}
-            height={40}
-            style={{ borderRadius: '100%' }}
-          />
-        </Link>
+        <Flex align="center" gap={10}>
+          <Link to="/my">
+            <img
+              src={
+                user.photoURL ??
+                'https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-128.png'
+              }
+              alt="유저의 이미지"
+              width={40}
+              height={40}
+              style={{ borderRadius: '100%' }}
+            />
+          </Link>
+          <Link to="/settings">
+            <img
+              src="https://cdn1.iconfinder.com/data/icons/ionicons-outline-vol-2/512/settings-outline-64.png"
+              alt="설정 아이콘"
+              width={30}
+              height={30}
+            />
+          </Link>
+        </Flex>
       )
     }
 
