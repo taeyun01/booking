@@ -15,7 +15,7 @@ const RecommendHotels = ({
   const { data, isLoading } = useRecommendHotels({ hotelIds: recommendHotels })
   const [showMore, setShowMore] = useState(false)
 
-  console.log('data', data)
+  // console.log('data', data)
 
   if (!data || isLoading) return null
 

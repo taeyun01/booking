@@ -7,11 +7,12 @@ import Text from '@/components/shared/Text'
 import TextField from '@/components/shared/TextField'
 import useUser from '@/hooks/auth/useUser'
 import { format } from 'date-fns'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 const Review = ({ hotelId }: { hotelId: string }) => {
-  const { data: reviews, isLoading } = useReviews({ hotelId })
+  const { data: reviews, isLoading, write, remove } = useReviews({ hotelId })
   const user = useUser()
+  const [text, setText] = useState('')
 
   const reviewRows = useCallback(() => {
     // 작성된 리뷰가 없으면
@@ -38,6 +39,7 @@ const Review = ({ hotelId }: { hotelId: string }) => {
       <ul>
         {reviews?.map((review) => (
           <ListRow
+            key={review.id}
             left={
               review.user.photoURL && (
                 <img src={review.user.photoURL} alt="" width={40} height={40} />
@@ -51,13 +53,34 @@ const Review = ({ hotelId }: { hotelId: string }) => {
             }
             right={
               // 리뷰 작성한 유저와 현재 로그인한 유저가 같으면 삭제 버튼 보여주기
-              review.userId === user?.uid && <Button>삭제</Button>
+              review.userId === user?.uid && (
+                <Button
+                  onClick={() => {
+                    const isRemove = confirm('정말 삭제하시겠습니까?')
+                    if (isRemove) {
+                      remove({
+                        reviewId: review.id,
+                        hotelId: review.hotelId,
+                      })
+                    }
+                  }}
+                >
+                  삭제
+                </Button>
+              )
             }
           />
         ))}
       </ul>
     )
-  }, [reviews, user])
+  }, [reviews, user, remove])
+
+  const handleTextChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setText(e.target.value)
+    },
+    [],
+  )
 
   if (isLoading) return null
 
@@ -70,10 +93,18 @@ const Review = ({ hotelId }: { hotelId: string }) => {
       {reviewRows()}
       {user && (
         <div style={{ padding: '0 24px' }}>
-          <TextField />
+          <TextField value={text} onChange={handleTextChange} />
           <Spacing size={6} />
           <Flex justify="flex-end">
-            <Button disabled={true}>작성</Button>
+            <Button
+              disabled={text.length === 0}
+              onClick={async () => {
+                const success = await write(text)
+                if (success) setText('')
+              }}
+            >
+              작성
+            </Button>
           </Flex>
         </div>
       )}

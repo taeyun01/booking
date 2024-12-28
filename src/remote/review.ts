@@ -1,10 +1,12 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
   orderBy,
   query,
+  setDoc,
 } from 'firebase/firestore'
 import { store } from './firebase'
 import { COLLECTIONS } from '@/constants'
@@ -73,4 +75,31 @@ export const getReviews = async ({ hotelId }: { hotelId: string }) => {
   }
 
   return result
+}
+
+// 추가할 리뷰에 대한 데이터를 받아서 리뷰를 추가하는 함수
+// Review 타입은 지금 id를 가지고 있지만 근데 이 id는 문서가 생성될 때 부여되는 id라서 이렇게 추가할 당시에는 아이디가 없다. 그래서 Omit을 사용해 아이디를 제외한 타입을 받도록 만들어줌
+export const writeReview = (review: Omit<Review, 'id'>) => {
+  // 호텔 정보 가져오기
+  const hotelRef = doc(store, COLLECTIONS.HOTEL, review.hotelId)
+  // 생성할 리뷰로의 위치를 잡아줌
+  const reviewRef = doc(collection(hotelRef, COLLECTIONS.REVIEW))
+
+  // 리류 저장 (reviewRef 위치에 review를 저장)
+  return setDoc(reviewRef, review)
+}
+
+// 리뷰 삭제 함수
+export const removeReview = ({
+  reviewId,
+  hotelId,
+}: {
+  reviewId: string
+  hotelId: string
+}) => {
+  const hotelRef = doc(store, COLLECTIONS.HOTEL, hotelId)
+  const reviewRef = doc(collection(hotelRef, COLLECTIONS.REVIEW), reviewId) // 삭제할 대상의 아이디를 넘겨주면 해당 호텔과 리뷰를 찾음
+
+  // 해당 문서의 리뷰 삭제
+  return deleteDoc(reviewRef)
 }
