@@ -1,5 +1,3 @@
-//* 객실을 담당하는 컴포넌트
-
 import useRooms from '@/components/hotel/hooks/useRooms'
 import Button from '@/components/shared/Button'
 import Flex from '@/components/shared/Flex'
@@ -7,13 +5,20 @@ import ListRow from '@/components/shared/ListRow'
 import Spacing from '@/components/shared/Spacing'
 import Tag from '@/components/shared/Tag'
 import Text from '@/components/shared/Text'
+import useAlert from '@/hooks/alert/useAlert'
+import useUser from '@/hooks/auth/useUser'
 import addDelimiter from '@/utils/addDelimiter'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import qs from 'qs'
+import { useNavigate } from 'react-router-dom'
 
+//* 객실을 담당하는 컴포넌트
 const Rooms = ({ hotelId }: { hotelId: string }) => {
   const { data } = useRooms({ hotelId })
-
+  const user = useUser()
+  const showAlert = useAlert()
+  const navigate = useNavigate()
   // console.log('data', data)
 
   return (
@@ -30,6 +35,18 @@ const Rooms = ({ hotelId }: { hotelId: string }) => {
         {data?.map((room) => {
           const isClosingToDeadline = room.avaliableCount === 1 // 잔여객실 수가 1개면 마감임박
           const isSoldOut = room.avaliableCount === 0 // 잔여객실 수가 0개면 매진
+
+          // qs.stringify을 사용하면 쉽게 쿼리스트링을 만들 수있음
+          const params = qs.stringify(
+            {
+              roomId: room.id,
+              hotelId,
+            },
+            {
+              addQueryPrefix: true,
+            },
+          )
+          // console.log('params', params)
 
           return (
             <ListRow
@@ -60,7 +77,26 @@ const Rooms = ({ hotelId }: { hotelId: string }) => {
                 />
               }
               right={
-                <Button size="medium" disabled={isSoldOut}>
+                <Button
+                  size="medium"
+                  disabled={isSoldOut}
+                  onClick={() => {
+                    // 미 로그인 시
+                    if (!user) {
+                      showAlert({
+                        title: '로그인이 필요한 기능입니다.',
+                        onButtonClick: () => {
+                          navigate('/signin')
+                        },
+                      })
+
+                      return
+                    }
+
+                    // 로그인 돼있을 때
+                    navigate(`/schedule${params}`)
+                  }}
+                >
                   {isSoldOut ? '매진' : '선택'}
                 </Button>
               }

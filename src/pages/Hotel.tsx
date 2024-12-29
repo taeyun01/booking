@@ -1,4 +1,4 @@
-import RecommendHotels from '@/components/hotel/\bRecommendHotels'
+import RecommendHotels from '@/components/hotel/RecommendHotels'
 import ActionButton from '@/components/hotel/ActionButton'
 import Carousel from '@/components/hotel/Carousel'
 import Contents from '@/components/hotel/Contents'
