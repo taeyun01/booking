@@ -15,6 +15,7 @@ import { COLLECTIONS } from '@/constants'
 
 import { store } from './firebase'
 import { Hotel } from '@/models/hotel'
+import { Room } from '@/models/room'
 
 // 호텔 리스트 데이터를 가져오는 함수
 export const getHotels = async (pageParams?: QuerySnapshot<Hotel>) => {
@@ -82,4 +83,22 @@ export const getRecommendHotels = async (hotelIds: string[]) => {
         ...doc.data(),
       }) as Hotel,
   )
+}
+
+export const getHotelWithRoom = async ({
+  hotelId,
+  roomId,
+}: {
+  hotelId: string
+  roomId: string
+}) => {
+  const hotelSnapshot = await getDoc(doc(store, COLLECTIONS.HOTEL, hotelId)) // 호텔 데이터 가져오기
+  const roomSnapshot = await getDoc(
+    doc(hotelSnapshot.ref, COLLECTIONS.ROOM, roomId),
+  ) // 호텔을 기반으로 호텔이 가지고 있는 방 데이터 가져오기
+
+  return {
+    hotel: hotelSnapshot.data() as Hotel,
+    room: roomSnapshot.data() as Room,
+  }
 }
