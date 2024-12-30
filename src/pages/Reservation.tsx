@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 import useReservation from '@/components/reservation/hooks/useReservation'
 import Summary from '@/components/reservation/Summary'
 import Spacing from '@/components/shared/Spacing'
+import Form from '@/components/reservation/Form'
+import addDelimiter from '@/utils/addDelimiter'
 
 const ReservationPage = () => {
   const { hotelId, roomId, startDate, endDate, nights } = parse(
@@ -20,7 +22,12 @@ const ReservationPage = () => {
 
   const { data, isLoading } = useReservation({ hotelId, roomId })
 
-  console.log(data)
+  // console.log(data)
+
+  // 값을 받아 처리하는것만 신경쓰면 됨
+  const handleSubmit = () => {
+    console.log('dd')
+  }
 
   useEffect(() => {
     const queryParams = [startDate, roomId, startDate, endDate, nights].some(
@@ -37,6 +44,9 @@ const ReservationPage = () => {
 
   const { hotel, room } = data
 
+  // 일정에 따라 가격 표시
+  const buttonLabel = `${nights}박 ${addDelimiter(room.price * Number(nights))}원 예약하기`
+
   return (
     <div>
       <Summary
@@ -47,6 +57,11 @@ const ReservationPage = () => {
         nights={nights}
       />
       <Spacing size={8} backgroundColor="gray100" />
+      <Form
+        onSubmit={handleSubmit}
+        forms={hotel.form}
+        buttonLabel={buttonLabel}
+      />
     </div>
   )
 }

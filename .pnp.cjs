@@ -57,6 +57,7 @@ const RAW_RUNTIME_STATE =
           ["react-copy-to-clipboard", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:5.1.0"],\
           ["react-day-picker", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:9.4.4"],\
           ["react-dom", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:18.3.1"],\
+          ["react-hook-form", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:7.54.2"],\
           ["react-infinite-scroll-component", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:6.1.0"],\
           ["react-markdown", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:9.0.1"],\
           ["react-query", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:3.39.3"],\
@@ -6033,6 +6034,7 @@ const RAW_RUNTIME_STATE =
           ["react-copy-to-clipboard", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:5.1.0"],\
           ["react-day-picker", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:9.4.4"],\
           ["react-dom", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:18.3.1"],\
+          ["react-hook-form", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:7.54.2"],\
           ["react-infinite-scroll-component", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:6.1.0"],\
           ["react-markdown", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:9.0.1"],\
           ["react-query", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:3.39.3"],\
@@ -10011,6 +10013,28 @@ const RAW_RUNTIME_STATE =
           ["loose-envify", "npm:1.4.0"],\
           ["react", "npm:18.3.1"],\
           ["scheduler", "npm:0.23.2"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-hook-form", [\
+      ["npm:7.54.2", {\
+        "packageLocation": "../../../../.yarn/berry/cache/react-hook-form-npm-7.54.2-9e7394f4c4-10c0.zip/node_modules/react-hook-form/",\
+        "packageDependencies": [\
+          ["react-hook-form", "npm:7.54.2"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:7.54.2", {\
+        "packageLocation": "./.yarn/__virtual__/react-hook-form-virtual-574411934c/5/.yarn/berry/cache/react-hook-form-npm-7.54.2-9e7394f4c4-10c0.zip/node_modules/react-hook-form/",\
+        "packageDependencies": [\
+          ["react-hook-form", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:7.54.2"],\
+          ["@types/react", "npm:18.3.12"],\
+          ["react", "npm:18.3.1"]\
         ],\
         "packagePeers": [\
           "@types/react",\

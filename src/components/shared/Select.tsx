@@ -18,9 +18,8 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
 
 const BaseSelect = styled.select`
   height: 52px;
-  background-color: ${colors.gray};
   border-radius: 10px;
-  border: none;
+  border: 1px solid ${colors.gray};
   padding: 0 16px;
   cursor: pointer;
   appearance: none; // select 기본 스타일 화살표 제거
@@ -39,7 +38,12 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <Flex direction="column">
         {label ? (
-          <Text typography="t6" color="black" display="inline-block" style={{ marginBottom: 6 }}>
+          <Text
+            typography="t6"
+            color="black"
+            display="inline-block"
+            style={{ marginBottom: 6 }}
+          >
             {label}
           </Text>
         ) : null}

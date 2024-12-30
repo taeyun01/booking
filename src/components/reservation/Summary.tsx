@@ -52,7 +52,7 @@ const Summary = ({
             // 키 값이 INFO_LABEL_MAP에 존재할 경우 렌더링 (타입 해결위해 체크)
             if (key in INFO_LABEL_MAP) {
               return (
-                <Flex as="li" justify="space-between">
+                <Flex as="li" justify="space-between" key={key}>
                   <Text color="gray500" typography="t6">
                     {INFO_LABEL_MAP[key as keyof typeof INFO_LABEL_MAP]}{' '}
                     {/* 타입해결 */}
