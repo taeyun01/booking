@@ -159,12 +159,61 @@ export const ROOMS = [
   },
 ]
 
+// export const FORMS = [
+//   {
+//     id: 'name',
+//     label: '한글명',
+//     required: true,
+//     type: 'TEXT_FIELD',
+//   },
+//   {
+//     id: 'phone',
+//     label: '휴대전화번호',
+//     required: true,
+//     type: 'TEXT_FIELD',
+//   },
+//   {
+//     id: 'email',
+//     label: '이메일',
+//     required: true,
+//     type: 'TEXT_FIELD',
+//   },
+//   {
+//     id: 'isSmoke',
+//     label: '흡연여부',
+//     required: false,
+//     type: 'SELECT',
+//     options: [
+//       {
+//         label: '상관없음',
+//         value: '',
+//       },
+//       {
+//         label: '흡연',
+//         value: 'true',
+//       },
+//       {
+//         label: '비흡연',
+//         value: 'false',
+//       },
+//     ],
+//   },
+//   {
+//     id: 'special_request',
+//     label: '요청사항',
+//     required: false,
+//     type: 'TEXT_FIELD',
+//     helpMessage:
+//       '요청사항은 모두 전달되나 현지 숙소 사정에 따라 반영되지 않을 수 있습니다.',
+//   },
+// ]
+
 export const FORMS = [
   {
     id: 'name',
     label: '한글명',
-    required: true,
-    type: 'TEXT_FIELD',
+    required: true, // 캐싱 값인지 아닌지 여부
+    type: 'TEXT_FIELD', // 여러가지 form중에 어떤 타입의 인풋을 사용할 건지
   },
   {
     id: 'phone',
@@ -203,6 +252,7 @@ export const FORMS = [
     label: '요청사항',
     required: false,
     type: 'TEXT_FIELD',
-    helpMessage: '요청사항은 모두 전달되나 현지 숙소 사정에 따라 반영되지 않을 수 있습니다.',
+    helpMessage:
+      '요청사항은 모두 전달되나 현지 숙소 사정에 따라 반영되지 않을 수 있습니다.',
   },
 ]
