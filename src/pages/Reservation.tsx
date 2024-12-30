@@ -45,7 +45,7 @@ const ReservationPage = () => {
   const { hotel, room } = data
 
   // 일정에 따라 가격 표시
-  const buttonLabel = `${nights}박 ${addDelimiter(room.price * Number(nights))}원 예약하기`
+  const buttonLabel = `${nights}박 ${Number(nights) + 1}일 ${addDelimiter(room.price * Number(nights))}원 예약하기`
 
   return (
     <div>

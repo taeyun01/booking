@@ -25,32 +25,39 @@ const Form = ({
     (form: ReservationForm) => {
       if (form.type === 'TEXT_FIELD') {
         return (
-          <TextField
-            label={form.label}
-            helpMessage={
-              // 에러메세지가 있다면 에러를 우선적으로 표시, 없으면 기본 helpMessage표시
-              (formState.errors[form.id]?.message as string) || form.helpMessage
-            }
-            hasError={!!formState.errors[form.id]}
-            {...register(form.id, {
-              required: form.required,
-              pattern: VALIDATION_MESSAGE_MAP[form.id],
-            })}
-          />
+          <>
+            <TextField
+              label={form.label}
+              helpMessage={
+                // 에러메세지가 있다면 에러를 우선적으로 표시, 없으면 기본 helpMessage표시
+                (formState.errors[form.id]?.message as string) ||
+                form.helpMessage
+              }
+              hasError={!!formState.errors[form.id]}
+              {...register(form.id, {
+                required: form.required,
+                pattern: VALIDATION_MESSAGE_MAP[form.id],
+              })}
+            />
+            <Spacing size={16} />
+          </>
         )
       }
 
       if (form.type === 'SELECT') {
         return (
-          <Select
-            label={form.label}
-            options={form.options}
-            // hasError={!!formState.errors[form.id]} // TODO: Select컴포넌트 에러처리 추가하기
-            {...register(form.id, {
-              required: form.required,
-              pattern: VALIDATION_MESSAGE_MAP[form.id],
-            })}
-          />
+          <>
+            <Select
+              label={form.label}
+              options={form.options}
+              // hasError={!!formState.errors[form.id]} // TODO: Select컴포넌트 에러처리 추가하기
+              {...register(form.id, {
+                required: form.required,
+                pattern: VALIDATION_MESSAGE_MAP[form.id],
+              })}
+            />
+            <Spacing size={16} />
+          </>
         )
       }
 
@@ -61,6 +68,8 @@ const Form = ({
   return (
     <div style={{ padding: 24 }}>
       <Text bold>예약정보</Text>
+
+      <Spacing size={16} />
 
       <form>
         {forms.map((form, idx) => {
@@ -91,7 +100,7 @@ const VALIDATION_MESSAGE_MAP: {
     message: '한글명을 확인해주세요.',
   },
   email: {
-    value: /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // 이메일 형식 확인
+    value: /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // 이메일 형식 확인
     message: '이메일 형식을 확인해주세요.',
   },
   phone: {

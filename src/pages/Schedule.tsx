@@ -24,7 +24,7 @@ const SchedulePage = () => {
 
   // const isDateRangeSelected = selectedDate.startDate && selectedDate.endDate
   const buttonLabel = selectedDate.startDate
-    ? `${selectedDate.startDate} - ${selectedDate.endDate} (${selectedDate.nights}박)`
+    ? `${selectedDate.startDate} - ${selectedDate.endDate} (${selectedDate.nights}박 ${selectedDate.nights + 1}일)`
     : '예약 날짜를 선택해주세요'
 
   const moveToReservationPage = () => {
@@ -48,7 +48,6 @@ const SchedulePage = () => {
 
   return (
     <div>
-      캘린더 페이지
       <RangePicker
         startDate={selectedDate.startDate}
         endDate={selectedDate.endDate}
