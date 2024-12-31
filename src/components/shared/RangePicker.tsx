@@ -1,7 +1,13 @@
 import { DateRange, DayPicker } from 'react-day-picker'
 import { ko } from 'date-fns/locale'
 
-import { differenceInDays, format, isSameDay, parseISO } from 'date-fns'
+import {
+  differenceInDays,
+  format,
+  isSameDay,
+  parseISO,
+  addDays,
+} from 'date-fns'
 import styled from '@emotion/styled'
 import { colors } from '@/styles/colorPalette'
 
@@ -63,6 +69,9 @@ const RangePicker = ({ startDate, endDate, onChange }: RangePickerProps) => {
         defaultMonth={today}
         onSelect={handleDayClick}
         selected={selected}
+        disabled={{
+          before: addDays(new Date(), 1), // 오늘 이후에 날짜만 선택가능
+        }}
       />
     </Container>
   )
@@ -109,6 +118,11 @@ const Container = styled.div`
     position: relative;
     width: 100%;
     line-height: 45px;
+  }
+
+  // 버튼 중에 disabled 속성이 있는 버튼은 회색으로 표시
+  .rdp-day button[disabled] {
+    color: ${colors.gray300};
   }
 
   .rdp-range_start,
