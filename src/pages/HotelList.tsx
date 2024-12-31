@@ -14,7 +14,7 @@ const HotelList = () => {
   const { data: hotels, hasNextPage, loadMore } = useHotels()
   const { data: likes, mutate: likeMutate } = useLike()
 
-  console.log(likes)
+  // console.log(likes)
 
   if (!hotels) return <div>호텔 정보를 불러오는중...</div>
   return (

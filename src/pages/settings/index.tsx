@@ -19,6 +19,20 @@ const SettingsPage = () => {
             />
           </Link>
         </li>
+        <li>
+          <Link to="/reservation/list">
+            <ListRow
+              as="div"
+              contents={
+                <ListRow.ListRowTexts
+                  title="예약목록"
+                  subTitle="내가 예약한 호텔 보러가기"
+                />
+              }
+              withArrow={true}
+            />
+          </Link>
+        </li>
       </ul>
     </div>
   )

@@ -1,9 +1,19 @@
-import { collection, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from 'firebase/firestore'
 import { COLLECTIONS } from '@/constants'
 import { store } from './firebase'
 
 import { Reservation } from '@/models/reservation'
 import { Room } from '@/models/room'
+import { getHotel } from '@/remote/hotel'
 
 export const makeReservation = async (newReservation: Reservation) => {
   // 예약을 하기 위해 먼저 호텔과 객실에 대한 정보를 가져옴
@@ -35,4 +45,41 @@ export const makeReservation = async (newReservation: Reservation) => {
     // 예약된 문서 데이터 생성
     setDoc(doc(collection(store, COLLECTIONS.RESERVATION)), newReservation),
   ])
+}
+
+// 예약 목록 조회
+export const getReservations = async ({ userId }: { userId: string }) => {
+  // 해당 유저의 예약 목록 조회 쿼리
+  const reservationQuery = query(
+    collection(store, COLLECTIONS.RESERVATION), // RESERVATION 컬렉션을 조회해서 모든 데이터를 가져와서
+    where('userId', '==', userId), // 해당 유저의 예약 정보 데이터만 가져오기
+  )
+
+  // 쿼리 결과 가져오기
+  const reservationSnapshot = await getDocs(reservationQuery)
+
+  // 예약 정보랑 예약 정보 안에 있는 호텔 정보를 통해 호텔에 대한 정보를 가지고 와서 합쳐줌
+  const result = [] // 합친 정보를 담아두기 위한 배열
+
+  // 쿼리 결과 배열 순회
+  for (const reservationDoc of reservationSnapshot.docs) {
+    // 문서안에 들어있는 hotelId를 통해서 호텔의 정보를 빼와야함
+
+    // 일단 reservation을 먼저 정의해주고
+    const reservation = {
+      id: reservationDoc.id,
+      ...(reservationDoc.data() as Reservation),
+    }
+
+    // reservation 안에 들어있는 호텔 데이터를 통해서 호텔 정보를 가져옴
+    const hotel = await getHotel(reservation.hotelId)
+
+    // 예약 정보랑 호텔 정보를 합쳐서 배열에 넣어줌
+    result.push({
+      reservation,
+      hotel,
+    })
+  }
+
+  return result
 }
