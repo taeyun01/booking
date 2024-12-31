@@ -23,7 +23,7 @@ interface Hotel {
     }
   }
   recommendHotels: string[]
-  form: []
+  form: ReservationForm[]
 }
 
 // 폼은 type이 TEXT_FIELD도 있고 SELECT도 있다. 그런데 SELECT type은 옵션들을 가지고 있고. TEXT_FIELD는 옵션이 없기 때문에 폼 별로 타입을 분리해줄 필요가 있다.

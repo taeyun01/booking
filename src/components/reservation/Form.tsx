@@ -39,7 +39,6 @@ const Form = ({
                 pattern: VALIDATION_MESSAGE_MAP[form.id],
               })}
             />
-            <Spacing size={16} />
           </>
         )
       }
@@ -56,7 +55,6 @@ const Form = ({
                 pattern: VALIDATION_MESSAGE_MAP[form.id],
               })}
             />
-            <Spacing size={16} />
           </>
         )
       }
@@ -73,8 +71,13 @@ const Form = ({
 
       <form>
         {forms.map((form, idx) => {
-          // console.log(`form ${idx}`, Object.values(form).join(' '))
-          return <Fragment key={idx}>{component(form)}</Fragment>
+          // console.log(form.id)
+          return (
+            <Fragment key={form.id}>
+              {component(form)}
+              {idx !== forms.length - 1 && <Spacing size={8} />}
+            </Fragment>
+          )
         })}
       </form>
 
