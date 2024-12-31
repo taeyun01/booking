@@ -5,8 +5,13 @@ import Summary from '@/components/reservation/Summary'
 import Spacing from '@/components/shared/Spacing'
 import Form from '@/components/reservation/Form'
 import addDelimiter from '@/utils/addDelimiter'
+import useUser from '@/hooks/auth/useUser'
+import { useNavigate } from 'react-router-dom'
 
 const ReservationPage = () => {
+  const user = useUser()
+  const navigate = useNavigate()
+
   const { hotelId, roomId, startDate, endDate, nights } = parse(
     window.location.search,
     {
@@ -20,25 +25,48 @@ const ReservationPage = () => {
     nights: string
   }
 
-  const { data, isLoading } = useReservation({ hotelId, roomId })
+  const { data, isLoading, makeReservation } = useReservation({
+    hotelId,
+    roomId,
+  })
 
   // console.log(data)
 
   // 값을 받아 처리하는것만 신경쓰면 됨
-  const handleSubmit = () => {
-    console.log('dd')
+  const handleSubmit = async (formValues: { [key: string]: string }) => {
+    // console.log('formValues', formValues) // 예약 정보 폼 데이터
+    const newReservation = {
+      userId: user?.uid as string,
+      hotelId,
+      roomId,
+      startDate,
+      endDate,
+      price: room.price * Number(nights),
+      formValues,
+    }
+
+    // 예약하기
+    await makeReservation(newReservation)
+
+    // 예약 완료 후 예약 완료 페이지로 이동
+    navigate(`/reservation/done?hotelName=${hotel.name}`)
   }
 
   useEffect(() => {
-    const queryParams = [startDate, roomId, startDate, endDate, nights].some(
-      (param) => param === null,
-    )
+    const queryParams = [
+      user,
+      startDate,
+      roomId,
+      startDate,
+      endDate,
+      nights,
+    ].some((param) => param === null)
 
-    // 쿼리 값이 유실됐을 경우 뒤로가기
+    // 유저나, 쿼리 값이 유실됐을 경우 뒤로가기 (유저 세션이 만료됐을 경우도)
     if (queryParams) {
       window.history.back()
     }
-  }, [hotelId, roomId, startDate, endDate, nights])
+  }, [user, hotelId, roomId, startDate, endDate, nights])
 
   if (!data || isLoading) return null
 

@@ -10,16 +10,24 @@ import { useForm } from 'react-hook-form'
 // Form컴포넌트: onSubmit을 하기 위해 여러가지 폼에 대한 데이터를 다루는거에만 집중
 //* 호텔마다 필요한 정보가 다를수도 있기 때문에 고정된 form이 아닌 호텔마다 다른 form을 적용해야함
 //* 서버에서 폼의 데이터를 받고 그 데이터를 기반으로 동적으로 form 구현
+
+type FormData = {
+  [key: string]: string
+}
+
 const Form = ({
   forms,
   onSubmit,
   buttonLabel,
 }: {
   forms: Hotel['form']
-  onSubmit: () => void
+  onSubmit: (formValues: FormData) => void
   buttonLabel: string
 }) => {
-  const { register, formState, handleSubmit } = useForm({ mode: 'onBlur' }) // onBlur은 폼이 포커스를 잃었을 때 검증을 실행하는 옵션
+  // handleSubmit에서 폼 데이터를 받기 위해 FormData 타입 적용
+  const { register, formState, handleSubmit } = useForm<FormData>({
+    mode: 'onBlur',
+  }) // onBlur은 폼이 포커스를 잃었을 때 검증을 실행하는 옵션
 
   const component = useCallback(
     (form: ReservationForm) => {
