@@ -8,6 +8,8 @@ import Review from '@/components/hotel/Review'
 import Rooms from '@/components/hotel/Rooms'
 import Top from '@/components/shared/Top'
 import { useParams } from 'react-router-dom'
+import ScrollBar from '@/components/shared/ScrollBar'
+import { css } from '@emotion/react'
 
 const HotelPage = () => {
   const { id } = useParams() as { id: string }
@@ -25,6 +27,7 @@ const HotelPage = () => {
 
   return (
     <div>
+      <ScrollBar style={scrollBarStyle} color="red" />
       <Top title={name} subtitle={comment} />
       <Carousel images={images} />
       <ActionButton hotel={data} />
@@ -36,5 +39,11 @@ const HotelPage = () => {
     </div>
   )
 }
+
+const scrollBarStyle = css`
+  position: sticky;
+  top: 64px;
+  z-index: 10;
+`
 
 export default HotelPage
