@@ -11,13 +11,12 @@ import { useParams } from 'react-router-dom'
 import ScrollBar from '@/components/shared/ScrollBar'
 import { css } from '@emotion/react'
 
+import SEO from '@/components/shared/SEO'
+
 const HotelPage = () => {
   const { id } = useParams() as { id: string }
 
   const { isLoading, data } = useHotel({ id })
-
-  // console.log('isLoading', isLoading)
-  // console.log('data', data)
 
   if (!data || isLoading) {
     return <div>로딩중....</div>
@@ -27,6 +26,7 @@ const HotelPage = () => {
 
   return (
     <div>
+      <SEO title={name} description={comment} image={images[0]} />
       <ScrollBar style={scrollBarStyle} color="red" />
       <Top title={name} subtitle={comment} />
       <Carousel images={images} />
