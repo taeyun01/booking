@@ -4,6 +4,7 @@ import ListRow from '@/components/shared/ListRow'
 import Top from '@/components/shared/Top'
 
 import withSuspense from '@/components/shared/hocs/withSuspense'
+import { Link } from 'react-router-dom'
 
 const ReservationListPage = () => {
   const { data } = useReservations()
@@ -13,23 +14,28 @@ const ReservationListPage = () => {
       <Top title="내 예약 목록" subtitle="예약 목록을 확인해보세요" />
 
       {data?.map(({ hotel, reservation }) => (
-        <ListRow
+        <Link
+          to={`/reservation/details/${reservation.id}`}
           key={reservation.id}
-          left={
-            <img
-              src={hotel.mainImageUrl}
-              alt={`${hotel.name} 이미지`}
-              width={80}
-              height={80}
-            />
-          }
-          contents={
-            <ListRow.ListRowTexts
-              title={hotel.name}
-              subTitle={`${reservation.startDate} ~ ${reservation.endDate}`}
-            />
-          }
-        />
+        >
+          <ListRow
+            left={
+              <img
+                style={{ borderRadius: '4px' }}
+                src={hotel.mainImageUrl}
+                alt={`${hotel.name} 이미지`}
+                width={80}
+                height={80}
+              />
+            }
+            contents={
+              <ListRow.ListRowTexts
+                title={hotel.name}
+                subTitle={`${reservation.startDate} ~ ${reservation.endDate}`}
+              />
+            }
+          />
+        </Link>
       ))}
     </div>
   )

@@ -19,6 +19,7 @@ import AuthGuard from '@/components/auth/AuthGuard'
 import Navbar from '@/components/shared/Navbar'
 
 import { HelmetProvider } from 'react-helmet-async'
+import ReservationDetails from '@/pages/ReservationDetails'
 
 function App() {
   useLoadKakao()
@@ -85,6 +86,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <ReservationListPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/reservation/details/:id"
+                element={
+                  <PrivateRoute>
+                    <ReservationDetails />
                   </PrivateRoute>
                 }
               />
