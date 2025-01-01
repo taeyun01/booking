@@ -15,6 +15,7 @@ const useHotels = () => {
     getNextPageParam: (snapshot) => {
       return snapshot.lastVisible
     },
+    suspense: true,
   })
 
   // 다음 페이지를 호출할 수 있나 없나 체크하고 호출하는 함수

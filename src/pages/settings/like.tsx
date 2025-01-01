@@ -16,8 +16,13 @@ import Text from '@/components/shared/Text'
 
 import { Virtuoso } from 'react-virtuoso'
 
+import withSuspense from '@/components/shared/hocs/withSuspense'
+import FullPageLoader from '@/components/shared/FullPageLoader'
+
 const LikePage = () => {
   const { data, isEdit, reorder, save } = useEditLike()
+
+  console.log(data)
 
   const handleDragEndDrop = (result: DropResult) => {
     // DropResult안에는 목적지에 대한 정보가 들어있음. 목적지가 없으면 아무것도 하지 않음
@@ -29,13 +34,11 @@ const LikePage = () => {
     reorder(from, to)
   }
 
-  if (!data) return null
-
   return (
     <div>
       <Top title="찜한 목록" subtitle="" />
 
-      {!data.length && (
+      {!data!.length && (
         <Text style={{ padding: '0 24px' }} typography="t6">
           찜한 목록이 없습니다.
         </Text>
@@ -109,4 +112,13 @@ const StrictModeDroppable = ({ children, ...props }: DroppableProps) => {
   return <Droppable {...props}>{children}</Droppable>
 }
 
-export default LikePage
+const WrappedLikePage = withSuspense(LikePage, {
+  fallback: (
+    <FullPageLoader
+      message="데이터를 불러오는 중입니다."
+      imgSrc="https://cdn.pixabay.com/animation/2023/06/13/15/12/15-12-44-718_512.gif"
+    />
+  ),
+})
+
+export default WrappedLikePage

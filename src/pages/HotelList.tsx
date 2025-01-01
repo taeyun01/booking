@@ -10,26 +10,26 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import useLike from '@/hooks/like/useLike'
 
+import withSuspense from '@/components/shared/hocs/withSuspense'
+import FullPageLoader from '@/components/shared/FullPageLoader'
+
 const HotelList = () => {
   const { data: hotels, hasNextPage, loadMore } = useHotels()
   const { data: likes, mutate: likeMutate } = useLike()
 
-  // console.log(likes)
-
-  if (!hotels) return <div>호텔 정보를 불러오는중...</div>
   return (
     <div>
       <Top title="인기 호텔" subtitle="호텔부터 펜션까지 최저가" />
 
       <InfiniteScroll
-        dataLength={hotels.length ?? 0}
+        dataLength={hotels?.length ?? 0}
         hasMore={hasNextPage}
         loader={<></>}
         next={loadMore}
         // scrollThreshold={0.9} // 스크롤 임계점 (스크롤 90% 이상 되면 다음 페이지 로드)
       >
         <ul>
-          {hotels.map((hotel, idx) => (
+          {hotels?.map((hotel, idx) => (
             <Fragment key={hotel.id}>
               <HotelItem
                 hotel={hotel}
@@ -58,4 +58,13 @@ const spacingStyle = css`
   margin: 20px 0;
 `
 
-export default HotelList
+const WrappedHotelListPage = withSuspense(HotelList, {
+  fallback: (
+    <FullPageLoader
+      message="데이터를 불러오는 중입니다."
+      imgSrc="https://cdn.pixabay.com/animation/2023/06/13/15/12/15-12-44-718_512.gif"
+    />
+  ),
+})
+
+export default WrappedHotelListPage

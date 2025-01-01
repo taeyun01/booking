@@ -13,16 +13,15 @@ import { css } from '@emotion/react'
 
 import SEO from '@/components/shared/SEO'
 
+import withSuspense from '@/components/shared/hocs/withSuspense'
+import FullPageLoader from '@/components/shared/FullPageLoader'
+
 const HotelPage = () => {
   const { id } = useParams() as { id: string }
 
-  const { isLoading, data } = useHotel({ id })
+  const { data } = useHotel({ id })
 
-  if (!data || isLoading) {
-    return <div>로딩중....</div>
-  }
-
-  const { name, comment, images, contents, location, recommendHotels } = data
+  const { name, comment, images, contents, location, recommendHotels } = data!
 
   return (
     <div>
@@ -30,7 +29,7 @@ const HotelPage = () => {
       <ScrollBar style={scrollBarStyle} color="red" />
       <Top title={name} subtitle={comment} />
       <Carousel images={images} />
-      <ActionButton hotel={data} />
+      <ActionButton hotel={data!} />
       <Rooms hotelId={id} />
       <Contents contents={contents} />
       <Map location={location} />
@@ -46,4 +45,13 @@ const scrollBarStyle = css`
   z-index: 10;
 `
 
-export default HotelPage
+const WrappedHotelPage = withSuspense(HotelPage, {
+  fallback: (
+    <FullPageLoader
+      message="데이터를 불러오는 중입니다."
+      imgSrc="https://cdn.pixabay.com/animation/2023/06/13/15/12/15-12-44-718_512.gif"
+    />
+  ),
+})
+
+export default WrappedHotelPage

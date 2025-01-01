@@ -79,7 +79,7 @@ const INFO_LABEL_MAP = {
 
 const imageStyle = css`
   width: 100%;
-  height: 100px;
+  height: 270px;
   object-fit: cover;
   border-radius: 4px;
 `

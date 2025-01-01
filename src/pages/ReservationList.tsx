@@ -1,17 +1,18 @@
 import useReservations from '@/components/reservation-list/hooks/useReservation'
+import FullPageLoader from '@/components/shared/FullPageLoader'
 import ListRow from '@/components/shared/ListRow'
 import Top from '@/components/shared/Top'
 
-const ReservationListPage = () => {
-  const { data, isLoading } = useReservations()
+import withSuspense from '@/components/shared/hocs/withSuspense'
 
-  if (!data || isLoading) return null
+const ReservationListPage = () => {
+  const { data } = useReservations()
 
   return (
     <div>
       <Top title="내 예약 목록" subtitle="예약 목록을 확인해보세요" />
 
-      {data.map(({ hotel, reservation }) => (
+      {data?.map(({ hotel, reservation }) => (
         <ListRow
           key={reservation.id}
           left={
@@ -34,4 +35,13 @@ const ReservationListPage = () => {
   )
 }
 
-export default ReservationListPage
+const WrappedReservationListPage = withSuspense(ReservationListPage, {
+  fallback: (
+    <FullPageLoader
+      message="데이터를 불러오는 중입니다."
+      imgSrc="https://cdn.pixabay.com/animation/2023/06/13/15/12/15-12-44-718_512.gif"
+    />
+  ),
+})
+
+export default WrappedReservationListPage

@@ -124,5 +124,9 @@ const imageStyles = css`
   object-fit: cover;
   border-radius: 4px;
 `
+// Rooms만 부분적으로 서스펜스를 적용할 수동 있음. 지금은 HotelList에서 데이터 전체를 서스펜스 하고 있으니 이건 패스
+// const WrappedRooms = withSuspense(Rooms, {
+//   fallback: <div>부분적으로 적용 가능 한 로딩중..</div>,
+// })
 
 export default Rooms
