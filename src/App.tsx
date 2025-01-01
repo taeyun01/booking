@@ -1,23 +1,27 @@
-import HotelPage from '@/pages/Hotel'
-import HotelList from '@pages/HotelList'
-import Test from '@pages/Test'
+import { lazy, Suspense } from 'react'
+
+const PrivateRoute = lazy(() => import('@/components/auth/PrivateRoute'))
+const Test = lazy(() => import('@/pages/Test'))
+const HotelList = lazy(() => import('@/pages/HotelList'))
+const HotelPage = lazy(() => import('@/pages/Hotel'))
+const MyPage = lazy(() => import('@/pages/My'))
+const SigninPage = lazy(() => import('@/pages/Signin'))
+const SettingsPage = lazy(() => import('@/pages/settings'))
+const LikePage = lazy(() => import('@/pages/settings/like'))
+const SchedulePage = lazy(() => import('@/pages/Schedule'))
+const ReservationPage = lazy(() => import('@/pages/Reservation'))
+const ReservationDonePage = lazy(() => import('@/pages/ReservationDone'))
+const ReservationListPage = lazy(() => import('@/pages/ReservationList'))
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import useLoadKakao from '@/hooks/useLoadKakao'
-import SigninPage from '@/pages/Signin'
-import MyPage from '@/pages/My'
 import AuthGuard from '@/components/auth/AuthGuard'
 import Navbar from '@/components/shared/Navbar'
-import SettingsPage from '@/pages/settings'
-import LikePage from '@/pages/settings/like'
-import PrivateRoute from '@/components/auth/PrivateRoute'
-import SchedulePage from '@/pages/Schedule'
-import ReservationPage from '@/pages/Reservation'
-import ReservationDonePage from '@/pages/ReservationDone'
-import ReservationListPage from '@/pages/ReservationList'
+
 function App() {
   useLoadKakao()
   return (
-    <>
+    <Suspense fallback={<></>}>
       <BrowserRouter>
         <AuthGuard>
           <Navbar />
@@ -85,7 +89,7 @@ function App() {
           </Routes>
         </AuthGuard>
       </BrowserRouter>
-    </>
+    </Suspense>
   )
 }
 
