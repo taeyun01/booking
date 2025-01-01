@@ -62,6 +62,7 @@ const RAW_RUNTIME_STATE =
           ["react-markdown", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:9.0.1"],\
           ["react-query", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:3.39.3"],\
           ["react-router-dom", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:7.0.2"],\
+          ["react-virtuoso", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:4.12.3"],\
           ["recoil", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:0.7.7"],\
           ["swiper", "npm:11.1.15"],\
           ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"],\
@@ -6039,6 +6040,7 @@ const RAW_RUNTIME_STATE =
           ["react-markdown", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:9.0.1"],\
           ["react-query", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:3.39.3"],\
           ["react-router-dom", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:7.0.2"],\
+          ["react-virtuoso", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:4.12.3"],\
           ["recoil", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:0.7.7"],\
           ["swiper", "npm:11.1.15"],\
           ["typescript", "patch:typescript@npm%3A5.6.3#optional!builtin<compat/typescript>::version=5.6.3&hash=8c6c40"],\
@@ -10239,6 +10241,32 @@ const RAW_RUNTIME_STATE =
           ["react", "npm:18.3.1"],\
           ["react-dom", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:18.3.1"],\
           ["react-router", "virtual:1f5d01b6da1794de7dd4d3ee12a5cbc110d923f10cfae23f477d865e09cec1fd6811d4f7d4068a9a4b79d19bebdfb3d4ef1a201ddcd25c4d35c0f7cce9c77708#npm:7.0.2"]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-virtuoso", [\
+      ["npm:4.12.3", {\
+        "packageLocation": "../../../../.yarn/berry/cache/react-virtuoso-npm-4.12.3-4539e0502e-10c0.zip/node_modules/react-virtuoso/",\
+        "packageDependencies": [\
+          ["react-virtuoso", "npm:4.12.3"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:4.12.3", {\
+        "packageLocation": "./.yarn/__virtual__/react-virtuoso-virtual-95f7622798/5/.yarn/berry/cache/react-virtuoso-npm-4.12.3-4539e0502e-10c0.zip/node_modules/react-virtuoso/",\
+        "packageDependencies": [\
+          ["react-virtuoso", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:4.12.3"],\
+          ["@types/react", "npm:18.3.12"],\
+          ["@types/react-dom", "npm:18.3.1"],\
+          ["react", "npm:18.3.1"],\
+          ["react-dom", "virtual:01e16279c730062675ba45c3e5da60335b98e15f587c038598543373e608bdfecd76185297f11b582da7a03fe5a0859698105b045afe3f470897c8fb1d34b341#npm:18.3.1"]\
         ],\
         "packagePeers": [\
           "@types/react-dom",\

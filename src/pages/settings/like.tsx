@@ -13,6 +13,27 @@ import { useEffect, useState } from 'react'
 import useEditLike from '@/components/settings/like/hooks/useEditLike'
 import Top from '@/components/shared/Top'
 import Text from '@/components/shared/Text'
+import { Like } from '@/models/like'
+
+import { Virtuoso } from 'react-virtuoso'
+
+const generateMocks = () => {
+  const mocks = []
+
+  for (let i = 0; i < 1000; i++) {
+    mocks.push({
+      id: `${i}`,
+      hotelId: `호텔 ${i}`,
+      hotelName: `호텔 이름 테스트 ${i}`,
+      hotelMainImageUrl: `호텔 이미지 테스트 ${i}`,
+
+      userId: '',
+      order: i,
+    } as Like)
+  }
+
+  return mocks
+}
 
 const LikePage = () => {
   const { data, isEdit, reorder, save } = useEditLike()
@@ -28,6 +49,8 @@ const LikePage = () => {
   }
 
   if (!data) return null
+
+  const mocks = generateMocks()
 
   return (
     <div>
@@ -46,27 +69,38 @@ const LikePage = () => {
               ref={droppableProps.innerRef}
               {...droppableProps.droppableProps}
             >
-              {data.map((like, index) => (
-                <Draggable key={like.id} draggableId={like.id} index={index}>
-                  {(draggableProps) => (
-                    <li
-                      ref={draggableProps.innerRef}
-                      {...draggableProps.draggableProps}
-                      {...draggableProps.dragHandleProps}
+              <Virtuoso
+                useWindowScroll // 가상 스크롤 사용
+                increaseViewportBy={0} // 시작점
+                itemContent={(index, like) => {
+                  return (
+                    <Draggable
+                      key={like.id}
+                      draggableId={like.id}
+                      index={index}
                     >
-                      <ListRow
-                        as="div"
-                        contents={
-                          <ListRow.ListRowTexts
-                            title={like.order}
-                            subTitle={like.hotelName}
+                      {(draggableProps) => (
+                        <li
+                          ref={draggableProps.innerRef}
+                          {...draggableProps.draggableProps}
+                          {...draggableProps.dragHandleProps}
+                        >
+                          <ListRow
+                            as="div"
+                            contents={
+                              <ListRow.ListRowTexts
+                                title={like.order}
+                                subTitle={like.hotelName}
+                              />
+                            }
                           />
-                        }
-                      />
-                    </li>
-                  )}
-                </Draggable>
-              ))}
+                        </li>
+                      )}
+                    </Draggable>
+                  )
+                }}
+                data={mocks}
+              />
             </ul>
           )}
         </StrictModeDroppable>
