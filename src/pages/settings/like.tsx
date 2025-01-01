@@ -11,6 +11,8 @@ import {
 } from 'react-beautiful-dnd'
 import { useEffect, useState } from 'react'
 import useEditLike from '@/components/settings/like/hooks/useEditLike'
+import Top from '@/components/shared/Top'
+import Text from '@/components/shared/Text'
 
 const LikePage = () => {
   const { data, isEdit, reorder, save } = useEditLike()
@@ -29,6 +31,14 @@ const LikePage = () => {
 
   return (
     <div>
+      <Top title="찜한 목록" subtitle="" />
+
+      {!data.length && (
+        <Text style={{ padding: '0 24px' }} typography="t6">
+          찜한 목록이 없습니다.
+        </Text>
+      )}
+
       <DragDropContext onDragEnd={handleDragEndDrop}>
         <StrictModeDroppable droppableId="likes">
           {(droppableProps) => (
