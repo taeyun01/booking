@@ -65,7 +65,7 @@ export const AlertContextProvider = ({
     </Context.Provider>
   )
 }
-
+/* eslint-disable react-refresh/only-export-components */
 export const useAlertContext = () => {
   const values = useContext(Context)
 
