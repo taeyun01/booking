@@ -6,19 +6,17 @@ import Spacing from '@/components/shared/Spacing'
 import Text from '@/components/shared/Text'
 import { css } from '@emotion/react'
 
+import withSuspense from '@/components/shared/hocs/withSuspense'
+import FullPageLoader from '@/components/shared/FullPageLoader'
+
 const ReservationDetails = () => {
   const { id } = useParams() as { id: string }
   const { data } = useReservations()
 
-  if (!data) return <div>로딩중...</div>
-
   // 예약id가 같은 데이터 가져옴
   const reservationData = data?.find((item) => item.reservation.id === id)
 
-  if (!reservationData) return <div>예약한 내역이 없습니다.</div>
-  console.log(reservationData)
-
-  const { hotel, reservation } = reservationData
+  const { hotel, reservation } = reservationData!
 
   return (
     <div>
@@ -72,4 +70,13 @@ const imageStyle = css`
   object-fit: cover;
 `
 
-export default ReservationDetails
+const WrappedReservationDetails = withSuspense(ReservationDetails, {
+  fallback: (
+    <FullPageLoader
+      message="데이터를 불러오는 중입니다."
+      imgSrc="https://cdn.pixabay.com/animation/2023/06/13/15/12/15-12-44-718_512.gif"
+    />
+  ),
+})
+
+export default WrappedReservationDetails

@@ -6,6 +6,7 @@ import { css } from '@emotion/react'
 import { colors } from '../../styles/colorPalette'
 import { useCallback } from 'react'
 import useUser from '@/hooks/auth/useUser'
+import Text from '@/components/shared/Text'
 
 const Navbar = () => {
   const location = useLocation()
@@ -58,7 +59,18 @@ const Navbar = () => {
 
   return (
     <Flex justify="space-between" align="center" css={navbarContainerStyles}>
-      <Link to="/">Booking</Link>
+      <Link to="/">
+        <Flex align="center" gap={6}>
+          <img
+            src="https://cdn4.iconfinder.com/data/icons/general-office/91/General_Office_31-64.png"
+            alt="Booking 아이콘"
+            width={27}
+            height={27}
+          />
+          <Text typography="t6">여행을 떠나다</Text>
+        </Flex>
+      </Link>
+
       {renderButton()}
     </Flex>
   )
