@@ -53,6 +53,8 @@ const ReservationDetails = () => {
         <Text typography="t6">
           요청사항: {reservation.formValues.special_request || '없음'}
         </Text>
+
+        <Spacing size={16} />
       </Flex>
     </div>
   )

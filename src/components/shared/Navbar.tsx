@@ -77,7 +77,9 @@ const Navbar = () => {
 }
 
 const navbarContainerStyles = css`
-  padding: 10px 24px;
+  padding: 0px 24px;
+
+  height: 64px;
 
   position: sticky;
   top: 0;
