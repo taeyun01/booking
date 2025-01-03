@@ -35,7 +35,7 @@ const useGoogleSignin = () => {
 
       await setDoc(doc(collection(store, COLLECTIONS.USER), user.uid), newUser)
 
-      navigate('/')
+      return navigate('/')
     } catch (error) {
       //* 구글 로그인시 팝업 창이 뜨는데 그냥 닫으면 에러를 발생시킴. 이걸 무시하도록 만듬
       if (error instanceof FirebaseError) {
