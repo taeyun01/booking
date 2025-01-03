@@ -67,7 +67,7 @@ const Navbar = () => {
             width={27}
             height={27}
           />
-          <Text typography="t6">여행을 떠나다</Text>
+          <Text typography="t6">여행의 시작</Text>
         </Flex>
       </Link>
 
