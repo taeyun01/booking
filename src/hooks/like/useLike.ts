@@ -14,7 +14,13 @@ const useLike = () => {
 
   const { data } = useQuery(
     ['likes'],
-    () => getLikes({ userId: user?.uid as string }), // 이게 호출됐다 라는건 무조건 user가 있는 상태니까 as string으로 선언
+    () => {
+      if (!user) {
+        return
+      }
+
+      return getLikes({ userId: user.uid })
+    },
     {
       enabled: user !== null, // 유저가 있을때만 호출
       suspense: true,
