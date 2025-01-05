@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom'
 const LikePage = () => {
   const { data, isEdit, reorder, save } = useEditLike()
 
-  console.log(data)
+  // console.log(data)
 
   const handleDragEndDrop = (result: DropResult) => {
     // DropResult안에는 목적지에 대한 정보가 들어있음. 목적지가 없으면 아무것도 하지 않음

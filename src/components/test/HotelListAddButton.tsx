@@ -15,7 +15,7 @@ const HotelListAddButton = () => {
   const batch = writeBatch(store)
 
   const handleButtonClick = () => {
-    console.log('button clicked')
+    // console.log('button clicked')
     const hotels = HOTEL_NAMES.map((hotelName, idx) => {
       return {
         name: hotelName,
@@ -30,7 +30,7 @@ const HotelListAddButton = () => {
         }),
       }
     })
-    console.log(hotels)
+    // console.log(hotels)
 
     hotels.forEach((hotel) => {
       const hotelDocRef = doc(collection(store, COLLECTIONS.HOTEL)) // HOTEL 컬렉션에 데이터 추가

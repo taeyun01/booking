@@ -52,7 +52,7 @@ const SchedulePage = () => {
         startDate={selectedDate.startDate}
         endDate={selectedDate.endDate}
         onChange={(dateRange) => {
-          console.log('사용처', dateRange)
+          // console.log('사용처', dateRange)
           setSelectedDate({
             startDate: dateRange.from,
             endDate: dateRange.to,
