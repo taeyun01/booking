@@ -45,6 +45,8 @@ const useGoogleSignin = () => {
         }
       }
 
+      console.log('error', error)
+
       console.error('알 수 없는 로그인 에러:', error)
       throw new Error('로그인에 실패했습니다. 잠시 후 다시 시도해주세요.')
     }
