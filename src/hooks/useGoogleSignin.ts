@@ -50,9 +50,10 @@ const useGoogleSignin = () => {
     }
   }, [navigate])
 
-  const signout = useCallback(() => {
-    signOut(auth)
-  }, [])
+  const signout = useCallback(async () => {
+    await signOut(auth)
+    return navigate('/')
+  }, [navigate])
 
   return { signin, signout }
 }

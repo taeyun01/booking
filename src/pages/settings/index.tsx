@@ -1,9 +1,16 @@
+import FixedBottomButton from '@/components/shared/FixedBottomButton'
 import ListRow from '@/components/shared/ListRow'
+import Spacing from '@/components/shared/Spacing'
 import { Link } from 'react-router-dom'
 
+import useGoogleSignin from '@/hooks/useGoogleSignin'
+
 const SettingsPage = () => {
+  const { signout } = useGoogleSignin()
+
   return (
     <div>
+      <Spacing size={8} />
       <ul>
         <li>
           <Link to="/settings/like">
@@ -33,6 +40,7 @@ const SettingsPage = () => {
             />
           </Link>
         </li>
+        <FixedBottomButton color="error" label="로그아웃" onClick={signout} />
       </ul>
     </div>
   )

@@ -18,6 +18,7 @@ import { Virtuoso } from 'react-virtuoso'
 
 import withSuspense from '@/components/shared/hocs/withSuspense'
 import FullPageLoader from '@/components/shared/FullPageLoader'
+import { Link } from 'react-router-dom'
 
 const LikePage = () => {
   const { data, isEdit, reorder, save } = useEditLike()
@@ -36,7 +37,10 @@ const LikePage = () => {
 
   return (
     <div>
-      <Top title="찜한 목록" subtitle="" />
+      <Top
+        title="찜한 목록"
+        subtitle="찜한 목록 드래그하여 순서를 변경해보세요"
+      />
 
       {!data!.length && (
         <Text style={{ padding: '0 24px' }} typography="t6">
@@ -69,10 +73,28 @@ const LikePage = () => {
                         >
                           <ListRow
                             as="div"
+                            left={
+                              <img
+                                src={`${like.hotelMainImageUrl}`}
+                                alt={`${like.hotelName}의 이미지`}
+                                width={80}
+                                height={80}
+                                style={{ borderRadius: '4px' }}
+                              />
+                            }
                             contents={
                               <ListRow.ListRowTexts
-                                title={like.order}
-                                subTitle={like.hotelName}
+                                title={like.hotelName}
+                                subTitle={
+                                  <Link to={`/hotel/${like.hotelId}`}>
+                                    예약하기
+                                  </Link>
+                                }
+                                titleFontSize="t6"
+                                isTitleBold={false}
+                                subTitleColor="blue"
+                                isSubTitleBold={true}
+                                spacing={4}
                               />
                             }
                           />

@@ -6,11 +6,13 @@ import { createPortal } from 'react-dom'
 
 import Button from './Button'
 import { colors } from '../../styles/colorPalette'
+import { ButtonColor } from '@/styles/button'
 
 interface FixedBottomButtonProps {
   label: string
   onClick: () => void
   disabled?: boolean
+  color?: ButtonColor
 }
 
 // portal에 버튼 띄우기
@@ -18,6 +20,7 @@ const FixedBottomButton = ({
   label,
   onClick,
   disabled,
+  color = 'primary',
 }: FixedBottomButtonProps) => {
   const $portalRoot = document.getElementById('root-portal')
 
@@ -31,6 +34,7 @@ const FixedBottomButton = ({
         full
         onClick={onClick}
         css={buttonStyles}
+        color={color}
       >
         {label}
       </Button>

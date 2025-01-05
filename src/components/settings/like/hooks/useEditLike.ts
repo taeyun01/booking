@@ -14,7 +14,7 @@ const useEditLike = () => {
   // 유저가 찜목록 순서를 바꿨을 때, 바뀐 순서를 렌더링
   const [updatedLikes, setUpdatedLikes] = useState<Like[]>([])
 
-  // 유저가 순서를 변경했는지 않했는지 구분하는 값
+  // 유저가 순서를 변경했는지 안했는지 구분하는 값
   const [isEdit, setIsEdit] = useState(false)
 
   useEffect(() => {
