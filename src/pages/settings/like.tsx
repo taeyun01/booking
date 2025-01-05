@@ -39,7 +39,7 @@ const LikePage = () => {
     <div>
       <Top
         title="찜한 목록"
-        subtitle="찜한 목록 드래그하여 순서를 변경해보세요"
+        subtitle="찜한 목록을 드래그하여 순서를 변경해보세요"
       />
 
       {!data!.length && (

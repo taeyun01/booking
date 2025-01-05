@@ -1,6 +1,7 @@
 import useReservations from '@/components/reservation-list/hooks/useReservation'
 import FullPageLoader from '@/components/shared/FullPageLoader'
 import ListRow from '@/components/shared/ListRow'
+import Text from '@/components/shared/Text'
 import Top from '@/components/shared/Top'
 
 import withSuspense from '@/components/shared/hocs/withSuspense'
@@ -12,6 +13,12 @@ const ReservationListPage = () => {
   return (
     <div>
       <Top title="내 예약 목록" subtitle="예약 목록을 확인해보세요" />
+
+      {!data?.length && (
+        <Text style={{ padding: '0 24px' }} bold>
+          예약 목록이 없습니다.
+        </Text>
+      )}
 
       {data?.map(({ hotel, reservation }) => (
         <Link

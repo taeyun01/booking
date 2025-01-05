@@ -33,14 +33,14 @@ const Navbar = () => {
               style={{ borderRadius: '100%' }}
             />
           </Link>
-          <Link to="/settings">
+          {/* <Link to="/settings">
             <img
               src="https://cdn1.iconfinder.com/data/icons/ionicons-outline-vol-2/512/settings-outline-64.png"
               alt="설정 아이콘"
               width={30}
               height={30}
             />
-          </Link>
+          </Link> */}
         </Flex>
       )
     }
