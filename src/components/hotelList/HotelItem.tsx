@@ -112,16 +112,9 @@ const HotelItem = ({
               ></ListRow.ListRowTexts>
               <Spacing size={4} />
               <Text typography="t7" color="gray600">
-                {hotel.starRating} 성급
+                {hotel.starRating} 성급{' '}
               </Text>
-            </Flex>
-          }
-          right={
-            <Flex
-              direction="column"
-              align="flex-end"
-              style={{ position: 'relative' }}
-            >
+              <Spacing size={4} />
               <img
                 css={iconHeartStyles}
                 src={
@@ -132,6 +125,14 @@ const HotelItem = ({
                 alt="찜 이미지"
                 onClick={handleLike}
               />
+            </Flex>
+          }
+          right={
+            <Flex
+              direction="column"
+              align="flex-end"
+              style={{ position: 'relative' }}
+            >
               <img
                 src={hotel.mainImageUrl}
                 alt={hotel.name}
@@ -162,11 +163,8 @@ const imageStyles = css`
 `
 
 const iconHeartStyles = css`
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 `
 
 export default HotelItem

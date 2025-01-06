@@ -13,7 +13,7 @@ const useLike = () => {
   const queryClient = useQueryClient()
 
   const { data } = useQuery(
-    ['likes'],
+    ['likes', user?.uid],
     () => {
       if (!user) {
         return
@@ -39,7 +39,7 @@ const useLike = () => {
     {
       onSuccess: () => {
         // 좋아요 버튼을 성공적으로 눌렀을때 ['likes'] 키 값을 가진 캐시 데이터를 버리고 새롭게 갱신 시켜 하트 버튼 상태 업데이트
-        queryClient.invalidateQueries(['likes'])
+        queryClient.invalidateQueries(['likes', user?.uid])
       },
       onError: (e: Error) => {
         if (e.message === '로그인 필요') {
