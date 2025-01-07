@@ -16,6 +16,7 @@ const useReservation = ({
   const { data, isLoading } = useQuery({
     queryKey: ['hotelWithRoom', hotelId, roomId],
     queryFn: () => getHotelWithRoom({ hotelId, roomId }),
+    suspense: true,
     onSuccess: ({ room }) => {
       // 예약 가능한 방이 없을 경우 알림창 띄우기
       // 룸에 대한 정보를 가져왔는데 매진이 됐을 경우

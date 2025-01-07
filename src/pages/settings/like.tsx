@@ -19,6 +19,7 @@ import { Virtuoso } from 'react-virtuoso'
 import withSuspense from '@/components/shared/hocs/withSuspense'
 import FullPageLoader from '@/components/shared/FullPageLoader'
 import { Link } from 'react-router-dom'
+import styled from '@emotion/styled'
 
 const LikePage = () => {
   const { data, isEdit, reorder, save } = useEditLike()
@@ -36,7 +37,7 @@ const LikePage = () => {
   }
 
   return (
-    <div>
+    <ContainerStyles>
       <Top
         title="찜한 목록"
         subtitle="찜한 목록을 드래그하여 순서를 변경해보세요"
@@ -111,7 +112,7 @@ const LikePage = () => {
       </DragDropContext>
 
       {isEdit && <FixedBottomButton label="저장하기" onClick={save} />}
-    </div>
+    </ContainerStyles>
   )
 }
 
@@ -133,6 +134,13 @@ const StrictModeDroppable = ({ children, ...props }: DroppableProps) => {
 
   return <Droppable {...props}>{children}</Droppable>
 }
+
+const ContainerStyles = styled.div`
+  background-color: white;
+  height: 100%;
+  min-height: 100dvh;
+  max-height: 100%;
+`
 
 const WrappedLikePage = withSuspense(LikePage, {
   fallback: (

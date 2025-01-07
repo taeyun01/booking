@@ -23,7 +23,7 @@ const FullPageLoader = ({
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: backgroundColor || 'default',
+        backgroundColor: backgroundColor || 'white',
       }}
       justify="center"
       align="center"

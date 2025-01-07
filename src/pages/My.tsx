@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom'
 
 import useGoogleSignin from '@/hooks/useGoogleSignin'
 import Top from '@/components/shared/Top'
+import styled from '@emotion/styled'
 
 const MyPage = () => {
   const { signout } = useGoogleSignin()
 
   return (
-    <div>
+    <ContainerStyles>
       <Top title="마이페이지" subtitle="내 정보를 확인해보세요" />
       <ul>
         <li>
@@ -42,8 +43,13 @@ const MyPage = () => {
         </li>
         <FixedBottomButton color="error" label="로그아웃" onClick={signout} />
       </ul>
-    </div>
+    </ContainerStyles>
   )
 }
+
+const ContainerStyles = styled.div`
+  background-color: white;
+  height: 100dvh;
+`
 
 export default MyPage

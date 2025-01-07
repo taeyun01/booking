@@ -1,8 +1,12 @@
 import { css } from '@emotion/react'
-import { colorPalette } from './colorPalette'
+import { colorPalette, colors } from './colorPalette'
 // 전역 스타일 설정
 export default css`
   ${colorPalette}
+
+  body {
+    background-color: ${colors.gray300};
+  }
 
   :root {
     --dimmed-zindex: 10;

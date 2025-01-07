@@ -15,6 +15,7 @@ import SEO from '@/components/shared/SEO'
 
 import withSuspense from '@/components/shared/hocs/withSuspense'
 import FullPageLoader from '@/components/shared/FullPageLoader'
+import Spacing from '@/components/shared/Spacing'
 
 const HotelPage = () => {
   const { id } = useParams() as { id: string }
@@ -35,6 +36,7 @@ const HotelPage = () => {
       <Map location={location} />
       <RecommendHotels recommendHotels={recommendHotels} />
       <Review hotelId={id} />
+      <Spacing size={30} backgroundColor="white" />
     </div>
   )
 }

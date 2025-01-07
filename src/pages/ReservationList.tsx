@@ -5,13 +5,14 @@ import Text from '@/components/shared/Text'
 import Top from '@/components/shared/Top'
 
 import withSuspense from '@/components/shared/hocs/withSuspense'
+import styled from '@emotion/styled'
 import { Link } from 'react-router-dom'
 
 const ReservationListPage = () => {
   const { data } = useReservations()
 
   return (
-    <div>
+    <ContainerStyles>
       <Top title="내 예약 목록" subtitle="예약 목록을 확인해보세요" />
 
       {!data?.length && (
@@ -44,9 +45,16 @@ const ReservationListPage = () => {
           />
         </Link>
       ))}
-    </div>
+    </ContainerStyles>
   )
 }
+
+const ContainerStyles = styled.div`
+  background-color: white;
+  height: 100%;
+  min-height: 100dvh;
+  max-height: 100%;
+`
 
 const WrappedReservationListPage = withSuspense(ReservationListPage, {
   fallback: (

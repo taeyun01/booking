@@ -2,6 +2,7 @@ import Button from '@/components/shared/Button'
 import Flex from '@/components/shared/Flex'
 import Spacing from '@/components/shared/Spacing'
 import Text from '@/components/shared/Text'
+import styled from '@emotion/styled'
 import qs from 'qs'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,7 +13,7 @@ const ReservationDonePage = () => {
   const navigate = useNavigate()
 
   return (
-    <div>
+    <ContainerStyles>
       <Spacing size={80} />
 
       <Flex direction="column" align="center" gap={8}>
@@ -41,8 +42,15 @@ const ReservationDonePage = () => {
           </Button>
         </Button.Group>
       </div>
-    </div>
+    </ContainerStyles>
   )
 }
+
+const ContainerStyles = styled.div`
+  background-color: white;
+  height: 100%;
+  min-height: 100dvh;
+  max-height: 100%;
+`
 
 export default ReservationDonePage

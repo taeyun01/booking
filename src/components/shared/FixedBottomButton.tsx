@@ -22,7 +22,7 @@ const FixedBottomButton = ({
   disabled,
   color = 'primary',
 }: FixedBottomButtonProps) => {
-  const $portalRoot = document.getElementById('root-portal')
+  const $portalRoot = document.getElementById('app-container')
 
   if (!$portalRoot) return null
 
@@ -54,11 +54,21 @@ const Container = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
+
   background-color: ${colors.white};
   padding: 20px 10px 8px;
 
+  box-sizing: border-box;
+
+  width: 100%;
+  max-width: 530px;
+
+  margin: 0 auto;
+
   transform: translateY(100%);
   animation: ${slideUp} 0.5s ease-in-out forwards;
+
+  z-index: 1001;
 `
 
 const buttonStyles = css`

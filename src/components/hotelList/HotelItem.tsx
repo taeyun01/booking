@@ -101,10 +101,56 @@ const HotelItem = ({
   return (
     <div>
       <Link to={`/hotel/${hotel.id}`}>
+        {/* <Flex direction="column" style={{ padding: '0 40px' }}>
+          <Flex direction="column" align="flex-start">
+            {tagComponent()}
+            <Text bold>{hotel.name}</Text>
+            <Text typography="t7">{hotel.comment}</Text>
+          </Flex>
+
+          <Spacing size={8} />
+
+          <img
+            src={hotel.mainImageUrl}
+            alt={hotel.name}
+            style={{
+              width: '100%',
+              height: '100%',
+              borderRadius: '8px',
+              objectFit: 'cover',
+            }}
+          />
+
+          <Spacing size={8} />
+
+          <Flex direction="column" align="flex-end">
+            <Text typography="t7" color="gray600">
+              {hotel.starRating} 성급{' '}
+            </Text>
+
+            <Spacing size={4} />
+
+            <img
+              css={iconHeartStyles}
+              src={
+                isLike
+                  ? 'https://cdn4.iconfinder.com/data/icons/twitter-29/512/166_Heart_Love_Like_Twitter-64.png'
+                  : 'https://cdn3.iconfinder.com/data/icons/feather-5/24/heart-64.png'
+              }
+              alt="찜 이미지"
+              onClick={handleLike}
+            />
+
+            <Spacing size={4} />
+
+            <Text bold>{addDelimiter(hotel.price)}원</Text>
+          </Flex>
+        </Flex> */}
+
         <ListRow
           contents={
             <Flex direction="column">
-              {/* 태그 (이벤트가 진행중인 호텔들만 태그 추가) 조건문 같은게 들어가면 지저분해 지니까 위에 따로 빼서 사용*/}
+              {/* 태그 (이벤트가 진행중인 호텔들만 태그 추가) 조건문 같은게 들어가면 지저분해 지니까 위에 따로 빼서 사용 */}
               {tagComponent()}
               <ListRow.ListRowTexts
                 title={hotel.name}

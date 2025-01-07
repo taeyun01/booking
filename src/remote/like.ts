@@ -33,6 +33,20 @@ export const getLikes = async ({ userId }: { userId: string }) => {
   )
 }
 
+export const getLikesAll = async () => {
+  const snapshot = await getDocs(
+    query(collection(store, COLLECTIONS.LIKE), orderBy('order', 'asc')),
+  )
+
+  return snapshot.docs.map(
+    (doc) =>
+      ({
+        id: doc.id,
+        ...doc.data(),
+      }) as Like,
+  )
+}
+
 // 이미 찜하기가 되어있다면 -> 삭제
 // 찜이 안되어 있다면 -> 추가(저장)
 export const toggleLike = async ({
