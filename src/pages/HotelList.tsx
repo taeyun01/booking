@@ -17,7 +17,7 @@ import HotelBestItem from '@/components/hotelList/HotelBestItem'
 
 import 'swiper/swiper-bundle.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Pagination } from 'swiper/modules'
+// import { Pagination } from 'swiper/modules'
 import SEO from '@/components/shared/SEO'
 
 const HotelList = () => {
@@ -57,7 +57,13 @@ const HotelList = () => {
 
       <Top title="인기 호텔" subtitle="호텔의 좋아요가 많은 순서" />
 
-      <Swiper css={swiperStyle} pagination={true} modules={[Pagination]}>
+      <Swiper
+        css={swiperStyle}
+        // pagination={true}
+        // modules={[Pagination]}
+        slidesPerView={2}
+        spaceBetween={8}
+      >
         {likesAllHotels?.map((hotel) => {
           if (!hotel) return null
           const isLike = Boolean(
@@ -119,13 +125,14 @@ const spacingStyle = css`
 `
 
 const swiperStyle = css`
-  .swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal {
-    margin-bottom: -50px !important;
-  }
+  padding: 0 24px;
+  // .swiper-pagination swiper-pagination-bullets swiper-pagination-horizontal {
+  //   margin-bottom: -50px !important;
+  // }
 
-  .swiper-pagination-bullet-active {
-    background-color: #000;
-  }
+  // .swiper-pagination-bullet-active {
+  //   background-color: #000;
+  // }
 `
 
 const WrappedHotelListPage = withSuspense(HotelList, {
