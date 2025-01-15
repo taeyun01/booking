@@ -21,6 +21,7 @@ import FullPageLoader from '@/components/shared/FullPageLoader'
 import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 
+// react-beautiful-dnd 참고 : https://highero.tistory.com/entry/react-beautiful-dnd-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%EB%A1%9C-%EB%93%9C%EB%9E%98%EA%B7%B8-%EC%95%A4-%EB%93%9C%EB%A1%AD-%EC%B0%A2%EA%B8%B0
 const LikePage = () => {
   const { data, isEdit, reorder, save } = useEditLike()
 

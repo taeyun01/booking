@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+// import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 
@@ -19,7 +19,7 @@ const queryClient = new QueryClient({
 })
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  <>
     <Global styles={globalStyles} />
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
@@ -28,5 +28,5 @@ createRoot(document.getElementById('root')!).render(
         </AlertContextProvider>
       </QueryClientProvider>
     </RecoilRoot>
-  </StrictMode>,
+  </>,
 )

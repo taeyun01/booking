@@ -102,3 +102,22 @@ export const getHotelWithRoom = async ({
     room: roomSnapshot.data() as Room,
   }
 }
+
+// 해당 키워드로 시작하는 카드들을 찾도록 간단하게 구현
+export const getSearchCards = async (keyword: string) => {
+  // 검색 쿼리
+  const searchQuery = query(
+    collection(store, COLLECTIONS.HOTEL),
+    where('name', '>=', keyword),
+    where('name', '<=', keyword + '\uf8ff'), // '\uf8ff') 이 유니코드 문자는 문자들 중에 가장 큰 값을 의미
+  ) // 키워드로 시작하는 모든 카드들을 찾으라는 의미
+
+  const cardSnapshot = await getDocs(searchQuery)
+
+  const items = cardSnapshot.docs.map((doc) => ({
+    ...(doc.data() as Hotel),
+    id: doc.id,
+  }))
+
+  return items
+}

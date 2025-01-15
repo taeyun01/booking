@@ -19,11 +19,15 @@ import 'swiper/swiper-bundle.css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 // import { Pagination } from 'swiper/modules'
 import SEO from '@/components/shared/SEO'
+import Input from '@/components/shared/Input'
+import { useNavigate } from 'react-router-dom'
 
 const HotelList = () => {
   const { data: hotels, hasNextPage, loadMore } = useHotels()
   const { data: likes, mutate: likeMutate } = useLike()
   const { data: likesAll } = useLikeAll()
+
+  const navigate = useNavigate()
 
   // 좋아요한 호텔의 id값 가져오기
   const likesAlls = likesAll?.map((like) => like.hotelId)
@@ -50,10 +54,17 @@ const HotelList = () => {
   return (
     <div>
       <SEO
-        title={'Booking'}
-        description={'여행의 시작은 Booking에서'}
+        title="Booking"
+        description="여행의 시작은 Booking에서"
         image={images[0]}
       />
+
+      <div style={{ padding: '24px' }}>
+        <Input
+          placeholder="찾으시는 호텔이 있으신가요?"
+          onFocus={() => navigate('/search')}
+        />
+      </div>
 
       <Top title="인기 호텔" subtitle="호텔의 좋아요가 많은 순서" />
 
