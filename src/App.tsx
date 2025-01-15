@@ -22,6 +22,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import ReservationDetails from '@/pages/ReservationDetails'
 import styled from '@emotion/styled'
 import { colors } from '@/styles/colorPalette'
+import SearchPage from '@/pages/Search'
 
 function App() {
   useLoadKakao()
@@ -34,6 +35,7 @@ function App() {
               <Navbar />
               <Routes>
                 <Route path="/" element={<HotelList />} />
+                <Route path="/search" element={<SearchPage />} />
                 <Route path="/hotel/:id" element={<HotelPage />} />
                 <Route
                   path="/my"
