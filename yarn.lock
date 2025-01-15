@@ -3037,7 +3037,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^18.3.1":
+"@types/react-dom@npm:18":
   version: 18.3.5
   resolution: "@types/react-dom@npm:18.3.5"
   peerDependencies:
@@ -3068,22 +3068,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*":
-  version: 19.0.7
-  resolution: "@types/react@npm:19.0.7"
+"@types/react@npm:18.0.0":
+  version: 18.0.0
+  resolution: "@types/react@npm:18.0.0"
   dependencies:
+    "@types/prop-types": "npm:*"
+    "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10c0/818e546fa03a2a65ac2652fc472891ac96684211e8967bc25e1da6a8a09e2301ad972b1b038d128f8b4cbbd7691f6f57fee274db568169e9b6b01556abbb5bee
+  checksum: 10c0/e00cd004181e021b8ddee34470d936dda1c067a602dfee615e79d68dc2c67f5e66a2b917e3e72c4a8ad7c4591086bf4c8d4148ebac13061e6388903760e08cfd
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.3.12":
-  version: 18.3.18
-  resolution: "@types/react@npm:18.3.18"
-  dependencies:
-    "@types/prop-types": "npm:*"
-    csstype: "npm:^3.0.2"
-  checksum: 10c0/8fb2b00672072135d0858dc9db07873ea107cc238b6228aaa2a9afd1ef7a64a7074078250db38afbeb19064be8ea6af5eac32d404efdd5f45e093cc4829d87f8
+"@types/scheduler@npm:*":
+  version: 0.23.0
+  resolution: "@types/scheduler@npm:0.23.0"
+  checksum: 10c0/5cf7f2ba3732b74877559eb20b19f95fcd0a20c17dcb20e75a7ca7c7369cd455aeb2d406b3ff5a38168a9750da3bad78dd20d96d11118468b78f4959b8e56090
   languageName: node
   linkType: hard
 
@@ -3714,10 +3713,10 @@ __metadata:
     "@react-google-maps/api": "npm:^2.20.3"
     "@types/node": "npm:^22.10.1"
     "@types/qs": "npm:^6"
-    "@types/react": "npm:^18.3.12"
+    "@types/react": "npm:18"
     "@types/react-beautiful-dnd": "npm:^13"
     "@types/react-copy-to-clipboard": "npm:^5"
-    "@types/react-dom": "npm:^18.3.1"
+    "@types/react-dom": "npm:18"
     "@types/react-lazy-load-image-component": "npm:^1"
     "@vitejs/plugin-react": "npm:^4.3.4"
     date-fns: "npm:^4.1.0"
@@ -3732,11 +3731,11 @@ __metadata:
     globals: "npm:^15.12.0"
     prettier: "npm:^3.4.1"
     qs: "npm:^6.13.1"
-    react: "npm:^18.3.1"
+    react: "npm:18"
     react-beautiful-dnd: "npm:^13.1.1"
     react-copy-to-clipboard: "npm:^5.1.0"
     react-day-picker: "npm:^9.4.4"
-    react-dom: "npm:^18.3.1"
+    react-dom: "npm:18"
     react-helmet-async: "npm:^2.0.5"
     react-hook-form: "npm:^7.54.2"
     react-infinite-scroll-component: "npm:^6.1.0"
@@ -7152,7 +7151,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^18.3.1":
+"react-dom@npm:18":
   version: 18.3.1
   resolution: "react-dom@npm:18.3.1"
   dependencies:
@@ -7337,7 +7336,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.3.1":
+"react@npm:18":
   version: 18.3.1
   resolution: "react@npm:18.3.1"
   dependencies:
