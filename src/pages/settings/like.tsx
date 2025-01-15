@@ -50,7 +50,6 @@ const LikePage = () => {
         </Text>
       )}
 
-      {/* @ts-expect-error @typescript-eslint/ban-ts-comment */}
       <DragDropContext onDragEnd={handleDragEndDrop}>
         <StrictModeDroppable droppableId="likes">
           {(droppableProps) => (
@@ -63,7 +62,6 @@ const LikePage = () => {
                 increaseViewportBy={0} // 시작점
                 itemContent={(index, like) => {
                   return (
-                    // @ts-expect-error @typescript-eslint/ban-ts-comment
                     <Draggable
                       key={like.id}
                       draggableId={like.id}
@@ -135,7 +133,6 @@ const StrictModeDroppable = ({ children, ...props }: DroppableProps) => {
 
   if (!enabled) return null
 
-  // @ts-expect-error @typescript-eslint/ban-ts-comment
   return <Droppable {...props}>{children}</Droppable>
 }
 
