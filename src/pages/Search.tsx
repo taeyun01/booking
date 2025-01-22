@@ -15,11 +15,15 @@ import {
   useState,
 } from 'react'
 import { useQuery } from 'react-query'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const SearchPage = () => {
+  const location = useLocation()
+  const isSearchPage = ['/search'].includes(location.pathname) === true
+  console.log(isSearchPage)
+
   const [keyword, setKeyword] = useState('')
-  const debouncedKeyword = useDebounce(keyword)
+  const debouncedKeyword = useDebounce(keyword, 600)
 
   const navigate = useNavigate()
 
@@ -32,12 +36,26 @@ const SearchPage = () => {
   })
 
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus()
-    }
-  }, [])
+    const currentInputRef = inputRef.current
 
-  console.log(data)
+    if (currentInputRef) {
+      currentInputRef.focus()
+    }
+
+    const handleBlur = () => {
+      if (isSearchPage) {
+        window.history.back()
+      }
+    }
+
+    currentInputRef?.addEventListener('blur', handleBlur)
+
+    return () => {
+      currentInputRef?.removeEventListener('blur', handleBlur)
+    }
+  }, [isSearchPage])
+
+  // console.log(data)
 
   const handleKeyword = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value)
